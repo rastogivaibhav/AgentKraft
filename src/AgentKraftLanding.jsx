@@ -28,6 +28,8 @@ const pillars = [
     { label: "Enforce", value: "Push controls to API, workflow, and endpoint execution layers before damage happens." },
 ];
 
+const heroBadges = ["Runtime control plane", "Sovereign governance", "Endpoint enforcement"];
+
 const signalRows = [
     { label: "Live runtime health", value: "99.982%", tone: "good" },
     { label: "High-risk action interception", value: "<120ms", tone: "warm" },
@@ -101,9 +103,13 @@ export default function AgentKraftLanding() {
                 </div>
             </header>
 
-            <section className="ak-hero">
-                <div id="top" />
+            <section className="ak-hero" id="top">
                 <div className="ak-hero-copy">
+                    <div className="ak-badge-row">
+                        {heroBadges.map((badge) => (
+                            <span key={badge} className="ak-hero-badge">{badge}</span>
+                        ))}
+                    </div>
                     <div className="ak-kicker">AGENTKRAFT</div>
                     <h1>Enterprise AI control, with sovereign governance at runtime.</h1>
                     <p className="ak-subtitle">
@@ -125,6 +131,14 @@ export default function AgentKraftLanding() {
                 </div>
 
                 <div className="ak-hero-visual" aria-hidden="true">
+                    <div className="ak-stage-rail ak-stage-rail-top">
+                        <span>AgentFabric telemetry</span>
+                        <span>AGS verdict authority</span>
+                        <span>Gavel runtime check</span>
+                    </div>
+                    <div className="ak-stage-grid" />
+                    <div className="ak-stage-glow ak-stage-glow-one" />
+                    <div className="ak-stage-glow ak-stage-glow-two" />
                     <div className="ak-orb ak-orb-core" />
                     <div className="ak-orbit ak-orbit-one" />
                     <div className="ak-orbit ak-orbit-two" />
@@ -250,7 +264,7 @@ export default function AgentKraftLanding() {
                     <h2>Built for teams that need more than guardrails.</h2>
                     <p>
                         This is for organizations moving real work through AI systems and needing something stronger than
-                        “monitor and hope.”
+                        "monitor and hope."
                     </p>
                 </div>
                 <div className="ak-use-case-grid">
