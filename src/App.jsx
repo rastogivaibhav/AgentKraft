@@ -104,7 +104,7 @@ const governanceLayers = [
     {
         layer: "Layer 7",
         title: "Evidence and enforcement",
-        copy: "Hash-chained tamper-proof logs, receipts, and enforcement state linked to real execution outcomes.",
+        copy: "Hash-chained audit logs, receipts, and enforcement state linked to real execution outcomes.",
     },
 ];
 
@@ -119,13 +119,49 @@ const productDetails = [
         name: "AGS Sovereign",
         eyebrow: "7-layer governance engine",
         summary: "The policy and decision core that evaluates real-world agent risk through layered governance rather than flat rules or passive evals.",
-        points: ["7-layer governance model", "Deterministic verdicting for high-risk actions", "Tamper-proof, hash-chained evidence"],
+        points: ["7-layer governance model", "Deterministic verdicting for high-risk actions", "Hash-chained decision evidence"],
     },
     {
         name: "Gavel Runtime",
         eyebrow: "Execution enforcement layer",
         summary: "The runtime and endpoint layer that carries security, protection, and policy enforcement down to where agent execution actually happens.",
         points: ["On-device and endpoint protection", "Runtime and network-aware interception", "Machine-authenticated enforcement path"],
+    },
+];
+
+const applicationArchitectures = [
+    {
+        name: "AgentFabric",
+        eyebrow: "Runtime control plane",
+        summary: "The operational layer for runtime observability, governance workflows, pricing, release control, and enterprise-wide AI operations.",
+        flow: ["Apps and agents", "SDK / OTLP", "Collector", "Gateway / control plane", "Portal and data systems"],
+        responsibilities: [
+            "Observe runtime behavior, spans, lineage, and live activity",
+            "Manage policies, prompts, evals, budgets, and releases",
+            "Give platform and security teams one operator surface",
+        ],
+    },
+    {
+        name: "AGS Sovereign",
+        eyebrow: "Governance decision engine",
+        summary: "The deterministic policy core that evaluates proposed actions before execution and returns permit, deny, or escalate with evidence.",
+        flow: ["Proposed action", "Layered evaluation", "Conflict precedence", "Verdict", "Ledger and surveillance"],
+        responsibilities: [
+            "Apply layered governance from constitution through surveillance",
+            "Produce deterministic verdicts for high-risk execution paths",
+            "Keep audit evidence and policy provenance linked to decisions",
+        ],
+    },
+    {
+        name: "Gavel Runtime",
+        eyebrow: "Endpoint and runtime enforcement",
+        summary: "The machine-authenticated runtime loop that carries policy to the device, endpoint, and local operator surfaces.",
+        flow: ["Runtime detects action", "SRP evaluates policy", "Runtime enforces", "Telemetry recorded", "Operators install and trust"],
+        responsibilities: [
+            "Enforce allow, audit, or deny at the point of action",
+            "Keep the runtime contract disciplined across server and client planes",
+            "Support install, restart, rollback, and operator-visible trust",
+        ],
     },
 ];
 
@@ -150,7 +186,7 @@ const deploymentModels = [
 ];
 
 const trustSignals = [
-    "Hash-chained tamper-proof logs",
+    "Hash-chained audit logs",
     "Organization-wide traceability",
     "On-device and on-network coverage",
     "Deterministic verdict evidence",
@@ -172,6 +208,24 @@ const evidenceRows = [
     { label: "Decision receipts", value: "Immutable" },
     { label: "Execution logs", value: "Hash chained" },
     { label: "Audit readiness", value: "Operator visible" },
+];
+
+const audienceViews = [
+    {
+        audience: "Developers",
+        title: "A stack you can integrate without guessing.",
+        copy: "Each application has a clear role: AgentFabric handles runtime operations, AGS handles verdicting, and Gavel carries control to the endpoint and runtime edge.",
+    },
+    {
+        audience: "CISOs",
+        title: "Execution protection with evidence, not only dashboards.",
+        copy: "The platform is designed around runtime enforcement, organization-wide traceability, and tamper-evident audit evidence for high-consequence agent activity.",
+    },
+    {
+        audience: "Investors",
+        title: "A modular category play, not three unrelated codebases.",
+        copy: "The product story is a unified enterprise agent protection stack with distinct control-plane, governance, and enforcement layers that can compound together.",
+    },
 ];
 
 function getPageFromHash(hash) {
@@ -218,8 +272,9 @@ function PlatformPage() {
                     <span>Platform</span>
                     <h2>Protection across device, network, governance, and enterprise execution.</h2>
                     <p>
-                        AgentKraft is designed for a broader problem than plain policy checks or AI eval workflows. It
-                        combines execution protection, threat intelligence, traceability, and governance into one system.
+                        AgentKraft is shaped as an architecture-led platform. It connects runtime operations, governance
+                        decisioning, and endpoint enforcement into one product stack instead of leaving those concerns
+                        scattered across separate tools.
                     </p>
                 </div>
                 <div className="ak-page-grid">
@@ -263,6 +318,23 @@ function PlatformPage() {
                             ))}
                         </div>
                     </div>
+                </div>
+                <div className="ak-application-grid">
+                    {applicationArchitectures.map((item) => (
+                        <article key={item.name} className="ak-application-card">
+                            <span>{item.eyebrow}</span>
+                            <h3>{item.name}</h3>
+                            <p>{item.summary}</p>
+                            <div className="ak-application-flow" aria-label={`${item.name} architecture`}>
+                                {item.flow.map((step, index) => (
+                                    <div key={step} className="ak-application-step">
+                                        <strong>{index + 1}</strong>
+                                        <p>{step}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </article>
+                    ))}
                 </div>
             </section>
         </div>
@@ -399,7 +471,7 @@ function GovernancePage() {
                     <span>Governance</span>
                     <h2>7 layers designed for real-world enterprise challenges.</h2>
                     <p>
-                        AgentKraft is not built on plain vanilla policies alone. The governance model is layered to
+                        AgentKraft is not built on flat policies alone. The governance model is layered to
                         mirror how real organizations manage law, execution, risk, tools, and accountability.
                     </p>
                 </div>
@@ -447,7 +519,7 @@ function GovernancePage() {
                     <h3>Evidence matters</h3>
                     <p>
                         Governance is only real if decisions and execution trails can be trusted later. That is why the
-                        model is paired with tamper-proof, hash-chained logs and decision evidence.
+                        model is paired with hash-chained logs and decision evidence.
                     </p>
                 </div>
             </section>
@@ -482,6 +554,28 @@ function ProductsPage() {
                         </article>
                     ))}
                 </div>
+                <div className="ak-product-architecture">
+                    {applicationArchitectures.map((product) => (
+                        <article key={product.name} className="ak-page-card ak-product-architecture-card">
+                            <span>{product.eyebrow}</span>
+                            <h3>{product.name} in the stack</h3>
+                            <p>{product.summary}</p>
+                            <div className="ak-application-flow ak-application-flow-compact">
+                                {product.flow.map((step, index) => (
+                                    <div key={step} className="ak-application-step">
+                                        <strong>{index + 1}</strong>
+                                        <p>{step}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            <ul className="ak-page-list">
+                                {product.responsibilities.map((item) => (
+                                    <li key={item}>{item}</li>
+                                ))}
+                            </ul>
+                        </article>
+                    ))}
+                </div>
             </section>
         </div>
     );
@@ -506,6 +600,49 @@ function CompanyPage() {
                             <span>{item.label}</span>
                             <h3>{item.label} state</h3>
                             <p>{item.value}</p>
+                        </article>
+                    ))}
+                </div>
+                <div className="ak-company-note">
+                    <h3>Operating principle</h3>
+                    <p>
+                        The company should be presented as the stack that protects agent execution across device,
+                        network, governance, and enterprise accountability, not as a collection of partial tools.
+                    </p>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+function CompanyPageV2() {
+    return (
+        <div className="ak-page ak-page-view">
+            <div className="ak-noise" aria-hidden="true" />
+            <section className="ak-page-hero">
+                <div className="ak-section-heading">
+                    <span>Company</span>
+                    <h2>From today&apos;s control stack to tomorrow&apos;s enterprise protection layer.</h2>
+                    <p>
+                        AgentKraft is being built around one conviction: enterprises need stronger protection and
+                        intelligence for agents than dashboards, evals, and vanilla policy systems can provide.
+                    </p>
+                </div>
+                <div className="ak-page-grid">
+                    {companyMilestones.map((item) => (
+                        <article key={item.label} className="ak-page-card">
+                            <span>{item.label}</span>
+                            <h3>{item.label} state</h3>
+                            <p>{item.value}</p>
+                        </article>
+                    ))}
+                </div>
+                <div className="ak-application-grid">
+                    {audienceViews.map((item) => (
+                        <article key={item.audience} className="ak-application-card">
+                            <span>{item.audience}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.copy}</p>
                         </article>
                     ))}
                 </div>
@@ -563,7 +700,7 @@ export default function App() {
     if (page === "intelligence") content = <IntelligencePage />;
     if (page === "governance") content = <GovernancePage />;
     if (page === "products") content = <ProductsPage />;
-    if (page === "company") content = <CompanyPage />;
+    if (page === "company") content = <CompanyPageV2 />;
 
     return (
         <div className="ak-app-shell">

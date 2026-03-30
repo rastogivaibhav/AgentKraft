@@ -867,6 +867,100 @@ a {
   margin-top: 22px;
 }
 
+.ak-application-grid,
+.ak-product-architecture {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.ak-application-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ak-product-architecture {
+  grid-template-columns: 1fr;
+}
+
+.ak-application-card,
+.ak-product-architecture-card {
+  padding: 24px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at top right, rgba(137, 244, 255, 0.08), transparent 28%),
+    rgba(10, 15, 24, 0.68);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.ak-application-card > span,
+.ak-product-architecture-card > span {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8bdcf2;
+}
+
+.ak-application-card h3,
+.ak-product-architecture-card h3 {
+  font-family: "Space Grotesk", "Outfit", sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: -0.04em;
+  margin-bottom: 12px;
+}
+
+.ak-application-card p,
+.ak-product-architecture-card p {
+  color: rgba(232, 236, 244, 0.74);
+  line-height: 1.7;
+}
+
+.ak-application-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.ak-application-card .ak-application-flow {
+  grid-template-columns: 1fr;
+}
+
+.ak-application-flow-compact {
+  margin-bottom: 18px;
+}
+
+.ak-application-step {
+  padding: 14px 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ak-application-step strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.74rem;
+  background: rgba(137, 244, 255, 0.12);
+  color: #8bdcf2;
+}
+
+.ak-application-step p {
+  color: rgba(232, 236, 244, 0.82);
+  line-height: 1.45;
+  font-size: 0.95rem;
+}
+
 .ak-proof-card,
 .ak-page-mock {
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1505,6 +1599,7 @@ a {
   .ak-architecture-panel,
   .ak-architecture-board-grid,
   .ak-proof-grid,
+  .ak-application-grid,
   .ak-page-grid,
   .ak-price-grid,
   .ak-governance-grid,
@@ -1512,6 +1607,7 @@ a {
   .ak-use-case-grid,
   .ak-contact-panel,
   .ak-product-grid,
+  .ak-product-architecture,
   .ak-future-strip {
     grid-template-columns: 1fr;
   }
@@ -1568,6 +1664,10 @@ a {
     border-left: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
+
+  .ak-application-flow {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
@@ -1594,7 +1694,8 @@ a {
   }
 
   .ak-page-mock-body,
-  .ak-intel-grid {
+  .ak-intel-grid,
+  .ak-application-flow {
     grid-template-columns: 1fr;
   }
 

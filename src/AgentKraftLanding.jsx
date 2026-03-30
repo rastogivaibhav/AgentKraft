@@ -11,7 +11,7 @@ const suiteCards = [
         eyebrow: "Governance Engine",
         description: "The sovereign policy core that applies multi-layer governance to real-world agent execution and high-risk actions.",
         accent: "gold",
-        bullets: ["7-layer governance model", "Deterministic verdicting", "Tamper-proof, hash-chained evidence"],
+        bullets: ["7-layer governance model", "Deterministic verdicting", "Hash-chained audit evidence"],
     },
     {
         name: "Gavel Runtime",
@@ -51,7 +51,7 @@ const governanceLayers = [
     "Audit and enforcement evidence",
 ];
 
-const heroBadges = ["On-device", "On-network", "Enterprise-wide", "Tamper-proof"];
+const heroBadges = ["On-device", "On-network", "Enterprise-wide", "Audit-ready"];
 
 const signalRows = [
     { label: "Execution coverage", value: "Device + network + runtime", tone: "good" },
@@ -65,7 +65,7 @@ const tickerItems = [
     "On-network threat intelligence",
     "Enterprise-wide traceability",
     "Global execution protection",
-    "Hash-chained tamper-proof logs",
+    "Hash-chained audit evidence",
 ];
 
 const operatingModel = [
@@ -87,7 +87,7 @@ const operatingModel = [
     {
         step: "04",
         title: "Prove what happened",
-        copy: "Generate tamper-proof, hash-chained logs and evidence that stand up to security, audit, and compliance review.",
+        copy: "Generate hash-chained evidence and audit trails that stand up to security, audit, and compliance review.",
     },
 ];
 
@@ -119,7 +119,7 @@ const suiteSnapshots = {
     },
     "AGS Sovereign": {
         labels: ["Governance", "Verdicts", "Evidence"],
-        lines: ["7-layer control model", "Deterministic execution decisions", "Tamper-proof audit logs"],
+        lines: ["7-layer control model", "Deterministic execution decisions", "Hash-chained audit logs"],
     },
     "Gavel Runtime": {
         labels: ["Device", "Network", "Runtime"],
@@ -139,11 +139,11 @@ export default function AgentKraftLanding() {
                         ))}
                     </div>
                     <div className="ak-kicker">AGENTKRAFT</div>
-                    <h1>Security, governance, and protection for agent execution at enterprise scale.</h1>
+                    <h1>The operating stack for secure enterprise agents.</h1>
                     <p className="ak-subtitle">
-                        AgentKraft secures agents on device, on network, and across enterprise execution with
-                        organization-wide traceability, global protection controls, 7-layer governance, and tamper-proof
-                        hash-chained logs.
+                        AgentKraft brings together runtime control, governance decisioning, and endpoint enforcement so
+                        teams can ship agents with on-device protection, on-network intelligence, enterprise-wide
+                        traceability, and audit-ready evidence.
                     </p>
                     <div className="ak-cta-row">
                         <a className="ak-button ak-button-primary" href="#/platform">Explore the platform</a>
@@ -213,7 +213,7 @@ export default function AgentKraftLanding() {
                     <div className="ak-floating-card ak-card-bottom">
                         <span>Evidence chain</span>
                         <strong>SEALED</strong>
-                        <small>Hash-chained tamper-proof logs</small>
+                        <small>Hash-chained audit evidence</small>
                     </div>
                 </div>
             </section>
