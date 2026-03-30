@@ -83,6 +83,27 @@ const useCases = [
     },
 ];
 
+const heroConsoleRows = [
+    { status: "ALLOW", action: "Internal knowledge retrieval", latency: "42ms" },
+    { status: "ESCALATE", action: "External data transfer", latency: "118ms" },
+    { status: "DENY", action: "Privileged credential reset", latency: "31ms" },
+];
+
+const productSnapshots = {
+    "AgentFabric": {
+        labels: ["Telemetry", "Prompts", "Evals"],
+        lines: ["Live traces across agents", "Prompt drift watchlist", "Budget + rollout controls"],
+    },
+    "AGS Sovereign": {
+        labels: ["Packs", "Precedence", "Receipts"],
+        lines: ["L1-L8 governance stack", "Jurisdiction-aware verdicts", "Immutable decision evidence"],
+    },
+    "Gavel Runtime": {
+        labels: ["Runtime", "Endpoint", "Sync"],
+        lines: ["Local heartbeat posture", "Action interception point", "Machine policy refresh"],
+    },
+};
+
 export default function AgentKraftLanding() {
     return (
         <div className="ak-page">
@@ -151,6 +172,35 @@ export default function AgentKraftLanding() {
                         <div className="ak-radar-ring ak-radar-ring-two" />
                         <div className="ak-radar-ring ak-radar-ring-three" />
                     </div>
+                    <div className="ak-console-shot">
+                        <div className="ak-console-topbar">
+                            <span className="ak-console-dot" />
+                            <span className="ak-console-dot" />
+                            <span className="ak-console-dot" />
+                            <strong>Runtime control console</strong>
+                        </div>
+                        <div className="ak-console-grid">
+                            <div className="ak-console-panel">
+                                <span>Policy flow</span>
+                                {heroConsoleRows.map((row) => (
+                                    <div key={row.action} className="ak-console-row">
+                                        <em className={`ak-console-status ak-${row.status.toLowerCase()}`}>{row.status}</em>
+                                        <p>{row.action}</p>
+                                        <small>{row.latency}</small>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="ak-console-panel ak-console-panel-accent">
+                                <span>Sovereign decision stack</span>
+                                <div className="ak-mini-stack">
+                                    <div>L1 Constitution</div>
+                                    <div>L2 AI acts</div>
+                                    <div>L3 Data frameworks</div>
+                                    <div>L4-L8 Runtime controls</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className="ak-floating-card ak-card-top">
                         <span>Policy verdict</span>
                         <strong>ESCALATE</strong>
@@ -195,6 +245,18 @@ export default function AgentKraftLanding() {
                                 <h3>{card.name}</h3>
                             </div>
                             <p>{card.description}</p>
+                            <div className="ak-product-shot">
+                                <div className="ak-product-shot-tags">
+                                    {productSnapshots[card.name].labels.map((label) => (
+                                        <span key={label}>{label}</span>
+                                    ))}
+                                </div>
+                                <div className="ak-product-shot-body">
+                                    {productSnapshots[card.name].lines.map((line) => (
+                                        <div key={line} className="ak-product-shot-line">{line}</div>
+                                    ))}
+                                </div>
+                            </div>
                             <ul>
                                 {card.bullets.map((bullet) => (
                                     <li key={bullet}>{bullet}</li>
