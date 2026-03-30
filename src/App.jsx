@@ -4,6 +4,9 @@ import AgentKraftLanding from "./AgentKraftLanding.jsx";
 const pageMeta = {
     home: { title: "Home", href: "#/" },
     platform: { title: "Platform", href: "#/platform" },
+    security: { title: "Security", href: "#/security" },
+    intelligence: { title: "Threat Intelligence", href: "#/intelligence" },
+    governance: { title: "Governance", href: "#/governance" },
     products: { title: "Products", href: "#/products" },
     company: { title: "Company", href: "#/company" },
 };
@@ -28,6 +31,80 @@ const platformPillars = [
         label: "Global execution protection",
         title: "Protect how agents execute at scale.",
         copy: "Apply consistent safeguards and governance across regions, tenants, and execution paths.",
+    },
+];
+
+const securityControls = [
+    {
+        label: "Device and endpoint",
+        title: "Protect execution at the edge",
+        copy: "Detect and constrain risky actions on the device or endpoint where agent behavior becomes irreversible action.",
+    },
+    {
+        label: "Runtime controls",
+        title: "Enforce policy in live flows",
+        copy: "Stop sensitive execution paths in real time instead of relying only on offline testing or human hope.",
+    },
+    {
+        label: "Organization-wide posture",
+        title: "Move beyond app-by-app defense",
+        copy: "Apply one protection model across teams, environments, and agent surfaces instead of fragmented local controls.",
+    },
+];
+
+const intelligenceSignals = [
+    {
+        label: "Network signal",
+        title: "Map traffic and cross-boundary behavior",
+        copy: "Understand when agents cross systems, regions, tools, and policy domains so threats show up before incidents do.",
+    },
+    {
+        label: "Execution signal",
+        title: "Correlate behavior across agent lifecycles",
+        copy: "Tie actions, prompts, model calls, tool invocations, and runtime posture into one operational intelligence surface.",
+    },
+    {
+        label: "Threat insight",
+        title: "See where risk is actually emerging",
+        copy: "Turn distributed telemetry into actionable threat intelligence for platform, security, and governance teams.",
+    },
+];
+
+const governanceLayers = [
+    {
+        layer: "Layer 1",
+        title: "Constitution",
+        copy: "Company red lines, principles, and executive control posture.",
+    },
+    {
+        layer: "Layer 2",
+        title: "AI laws",
+        copy: "AI-specific legal obligations and enforceable constraints.",
+    },
+    {
+        layer: "Layer 3",
+        title: "Data frameworks",
+        copy: "Privacy, data protection, and regional framework controls.",
+    },
+    {
+        layer: "Layer 4",
+        title: "Agent governance",
+        copy: "Execution scope, authority, approvals, and risk ownership per agent.",
+    },
+    {
+        layer: "Layer 5",
+        title: "Skill and tool control",
+        copy: "Govern how agents use tools, APIs, and side-effecting capabilities.",
+    },
+    {
+        layer: "Layer 6",
+        title: "Execution coordination",
+        copy: "Constrain multi-agent handoffs, workflow movement, and organization-wide execution logic.",
+    },
+    {
+        layer: "Layer 7",
+        title: "Evidence and enforcement",
+        copy: "Hash-chained tamper-proof logs, receipts, and enforcement state linked to real execution outcomes.",
     },
 ];
 
@@ -56,6 +133,13 @@ const companyMilestones = [
     { label: "Today", value: "A pilot-ready protection stack covering runtime traceability, governance, and execution protection." },
     { label: "Next", value: "Tighter product integration, richer product interfaces, and design-partner deployments in high-consequence environments." },
     { label: "Future", value: "A global enterprise protection and intelligence layer for autonomous systems." },
+];
+
+const architectureRails = [
+    { title: "Device", body: "Endpoint enforcement, runtime bridge, machine-authenticated posture." },
+    { title: "Network", body: "Traffic visibility, cross-boundary actions, and threat intelligence." },
+    { title: "Governance", body: "7-layer decisioning, verdict authority, and execution constraints." },
+    { title: "Enterprise", body: "Organization-wide traceability, protection, and audit evidence." },
 ];
 
 function getPageFromHash(hash) {
@@ -100,7 +184,7 @@ function PlatformPage() {
             <section className="ak-page-hero">
                 <div className="ak-section-heading">
                     <span>Platform</span>
-                    <h2>Protection across device, network, and enterprise execution.</h2>
+                    <h2>Protection across device, network, governance, and enterprise execution.</h2>
                     <p>
                         AgentKraft is designed for a broader problem than plain policy checks or AI eval workflows. It
                         combines execution protection, threat intelligence, traceability, and governance into one system.
@@ -115,11 +199,121 @@ function PlatformPage() {
                         </article>
                     ))}
                 </div>
-                <div className="ak-company-note">
-                    <h3>Why this matters</h3>
+                <div className="ak-architecture-board">
+                    <div className="ak-architecture-board-top">
+                        <span>Unified execution architecture</span>
+                        <strong>One intelligence and protection layer across the full stack</strong>
+                    </div>
+                    <div className="ak-architecture-board-grid">
+                        {architectureRails.map((rail) => (
+                            <div key={rail.title} className="ak-architecture-board-card">
+                                <span>{rail.title}</span>
+                                <h3>{rail.title} plane</h3>
+                                <p>{rail.body}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+function SecurityPage() {
+    return (
+        <div className="ak-page ak-page-view">
+            <div className="ak-noise" aria-hidden="true" />
+            <section className="ak-page-hero">
+                <div className="ak-section-heading">
+                    <span>Security</span>
+                    <h2>Secure agent execution where actions actually happen.</h2>
                     <p>
-                        Most competitors solve a partial slice: observability, governance, or security. AgentKraft is
-                        being built to protect agent execution across the full operating environment.
+                        AgentKraft is designed for organizations that need more than posture dashboards. It protects
+                        runtime execution at device, endpoint, and organization scale.
+                    </p>
+                </div>
+                <div className="ak-page-grid">
+                    {securityControls.map((item) => (
+                        <article key={item.title} className="ak-page-card">
+                            <span>{item.label}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.copy}</p>
+                        </article>
+                    ))}
+                </div>
+                <div className="ak-company-note">
+                    <h3>Security stance</h3>
+                    <p>
+                        This is not just model or prompt security. It is execution protection for autonomous systems
+                        across endpoint, runtime, and enterprise control surfaces.
+                    </p>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+function IntelligencePage() {
+    return (
+        <div className="ak-page ak-page-view">
+            <div className="ak-noise" aria-hidden="true" />
+            <section className="ak-page-hero">
+                <div className="ak-section-heading">
+                    <span>Threat Intelligence</span>
+                    <h2>Turn agent telemetry into enterprise threat intelligence.</h2>
+                    <p>
+                        Runtime signals only matter if they become usable intelligence. AgentKraft is built to connect
+                        agent behavior, network movement, and execution outcomes into one operational picture.
+                    </p>
+                </div>
+                <div className="ak-page-grid">
+                    {intelligenceSignals.map((item) => (
+                        <article key={item.title} className="ak-page-card">
+                            <span>{item.label}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.copy}</p>
+                        </article>
+                    ))}
+                </div>
+                <div className="ak-company-note">
+                    <h3>Why intelligence matters</h3>
+                    <p>
+                        Threat intelligence is the bridge between observability and real protection. It is how
+                        organizations spot risk patterns before they become incidents or policy failures.
+                    </p>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+function GovernancePage() {
+    return (
+        <div className="ak-page ak-page-view">
+            <div className="ak-noise" aria-hidden="true" />
+            <section className="ak-page-hero">
+                <div className="ak-section-heading">
+                    <span>Governance</span>
+                    <h2>7 layers designed for real-world enterprise challenges.</h2>
+                    <p>
+                        AgentKraft is not built on plain vanilla policies alone. The governance model is layered to
+                        mirror how real organizations manage law, execution, risk, tools, and accountability.
+                    </p>
+                </div>
+                <div className="ak-governance-grid">
+                    {governanceLayers.map((item) => (
+                        <article key={item.title} className="ak-page-card ak-governance-card">
+                            <span>{item.layer}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.copy}</p>
+                        </article>
+                    ))}
+                </div>
+                <div className="ak-company-note">
+                    <h3>Evidence matters</h3>
+                    <p>
+                        Governance is only real if decisions and execution trails can be trusted later. That is why the
+                        model is paired with tamper-proof, hash-chained logs and decision evidence.
                     </p>
                 </div>
             </section>
@@ -204,6 +398,9 @@ function Footer() {
                 <div className="ak-footer-links">
                     <a href="#/">Home</a>
                     <a href="#/platform">Platform</a>
+                    <a href="#/security">Security</a>
+                    <a href="#/intelligence">Threat Intelligence</a>
+                    <a href="#/governance">Governance</a>
                     <a href="#/products">Products</a>
                     <a href="#/company">Company</a>
                 </div>
@@ -228,6 +425,9 @@ export default function App() {
 
     let content = <AgentKraftLanding />;
     if (page === "platform") content = <PlatformPage />;
+    if (page === "security") content = <SecurityPage />;
+    if (page === "intelligence") content = <IntelligencePage />;
+    if (page === "governance") content = <GovernancePage />;
     if (page === "products") content = <ProductsPage />;
     if (page === "company") content = <CompanyPage />;
 

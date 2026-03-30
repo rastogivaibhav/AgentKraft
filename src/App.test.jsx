@@ -21,4 +21,12 @@ describe("App", () => {
         expect(screen.getByText(/from today’s control stack to tomorrow’s enterprise protection layer/i)).toBeInTheDocument();
         expect(screen.getByText(/operating principle/i)).toBeInTheDocument();
     });
+
+    it("renders the governance page when the governance route is selected", () => {
+        window.location.hash = "#/governance";
+        render(<App />);
+
+        expect(screen.getByText(/7 layers designed for real-world enterprise challenges/i)).toBeInTheDocument();
+        expect(screen.getByText(/evidence matters/i)).toBeInTheDocument();
+    });
 });

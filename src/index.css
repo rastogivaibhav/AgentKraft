@@ -86,13 +86,14 @@ a {
 }
 
 .ak-nav-links {
-  gap: 22px;
+  gap: 16px;
 }
 
 .ak-nav-links a {
   color: rgba(232, 236, 244, 0.76);
   text-decoration: none;
-  font-size: 0.96rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 .ak-nav-links a:hover {
@@ -673,6 +674,13 @@ a {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.ak-governance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 30px;
+}
+
 .ak-price-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -769,6 +777,87 @@ a {
 .ak-company-note h3 {
   font-size: 2rem;
   margin-bottom: 10px;
+}
+
+.ak-architecture-board {
+  margin-top: 28px;
+  padding: 22px;
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at top left, rgba(45, 127, 249, 0.12), transparent 24%),
+    linear-gradient(180deg, rgba(10, 15, 24, 0.76), rgba(8, 12, 18, 0.92));
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.ak-architecture-board-top span {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8bdcf2;
+}
+
+.ak-architecture-board-top strong {
+  display: block;
+  font-family: "Space Grotesk", "Outfit", sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: -0.05em;
+}
+
+.ak-architecture-board-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.ak-architecture-board-card {
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ak-architecture-board-card span {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(232, 236, 244, 0.58);
+}
+
+.ak-architecture-board-card h3 {
+  font-family: "Space Grotesk", "Outfit", sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: -0.04em;
+  margin-bottom: 10px;
+}
+
+.ak-architecture-board-card p {
+  color: rgba(232, 236, 244, 0.72);
+  line-height: 1.65;
+}
+
+.ak-governance-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.ak-governance-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -30px -40px auto;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(137, 244, 255, 0.18), transparent 70%);
+  filter: blur(16px);
 }
 
 .ak-footer {
@@ -1176,8 +1265,10 @@ a {
 
 @media (max-width: 980px) {
   .ak-architecture-panel,
+  .ak-architecture-board-grid,
   .ak-page-grid,
   .ak-price-grid,
+  .ak-governance-grid,
   .ak-operating-grid,
   .ak-use-case-grid,
   .ak-contact-panel,
@@ -1257,6 +1348,10 @@ a {
   .ak-page-hero,
   .ak-footer {
     width: min(100% - 24px, 1200px);
+  }
+
+  .ak-governance-grid {
+    grid-template-columns: 1fr;
   }
 
   .ak-hero h1 {

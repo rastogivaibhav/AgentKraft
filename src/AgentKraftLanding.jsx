@@ -98,7 +98,7 @@ const useCases = [
     },
     {
         title: "Organization-wide agent protection",
-        text: "Apply consistent execution protection across business units instead of treating each team’s agents as a separate exception.",
+        text: "Apply consistent execution protection across business units instead of treating each team's agents as a separate exception.",
     },
     {
         title: "Security-led AI operations",
@@ -113,7 +113,7 @@ const heroConsoleRows = [
 ];
 
 const suiteSnapshots = {
-    "AgentFabric": {
+    AgentFabric: {
         labels: ["Traceability", "Ops", "Telemetry"],
         lines: ["Cross-agent trace views", "Release and runtime visibility", "Execution intelligence across the estate"],
     },
@@ -146,8 +146,8 @@ export default function AgentKraftLanding() {
                         hash-chained logs.
                     </p>
                     <div className="ak-cta-row">
-                        <a className="ak-button ak-button-primary" href="#platform">Explore the platform</a>
-                        <a className="ak-button ak-button-secondary" href="#architecture">See the architecture</a>
+                        <a className="ak-button ak-button-primary" href="#/platform">Explore the platform</a>
+                        <a className="ak-button ak-button-secondary" href="#/governance">See the governance model</a>
                     </div>
                 </div>
 
