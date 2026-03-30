@@ -142,6 +142,38 @@ const architectureRails = [
     { title: "Enterprise", body: "Organization-wide traceability, protection, and audit evidence." },
 ];
 
+const deploymentModels = [
+    "Private cloud deployment",
+    "Enterprise VPC / tenant isolation",
+    "Hybrid control plane + runtime edge",
+    "Regulated environment rollout",
+];
+
+const trustSignals = [
+    "Hash-chained tamper-proof logs",
+    "Organization-wide traceability",
+    "On-device and on-network coverage",
+    "Deterministic verdict evidence",
+];
+
+const securityEvents = [
+    { name: "Endpoint execution anomaly", verdict: "Blocked", detail: "Unapproved privileged execution request" },
+    { name: "Cross-boundary tool call", verdict: "Escalated", detail: "Sensitive transfer outside approved region" },
+    { name: "Local runtime policy drift", verdict: "Contained", detail: "Runtime sync forced to protected posture" },
+];
+
+const threatSignals = [
+    { title: "Cross-agent correlation", value: "14 linked sessions", tone: "cool" },
+    { title: "External action bursts", value: "3 flagged clusters", tone: "warm" },
+    { title: "High-risk tool patterns", value: "7 active detections", tone: "good" },
+];
+
+const evidenceRows = [
+    { label: "Decision receipts", value: "Immutable" },
+    { label: "Execution logs", value: "Hash chained" },
+    { label: "Audit readiness", value: "Operator visible" },
+];
+
 function getPageFromHash(hash) {
     if (!hash || hash === "#" || hash === "#/") return "home";
     if (!hash.startsWith("#/")) return "home";
@@ -214,6 +246,24 @@ function PlatformPage() {
                         ))}
                     </div>
                 </div>
+                <div className="ak-proof-grid">
+                    <div className="ak-proof-card">
+                        <span>Deployment models</span>
+                        <div className="ak-proof-list">
+                            {deploymentModels.map((item) => (
+                                <div key={item} className="ak-proof-item">{item}</div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="ak-proof-card">
+                        <span>Trust signals</span>
+                        <div className="ak-proof-list">
+                            {trustSignals.map((item) => (
+                                <div key={item} className="ak-proof-item">{item}</div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     );
@@ -240,6 +290,37 @@ function SecurityPage() {
                             <p>{item.copy}</p>
                         </article>
                     ))}
+                </div>
+                <div className="ak-page-mock ak-page-mock-security">
+                    <div className="ak-page-mock-topbar">
+                        <span className="ak-console-dot" />
+                        <span className="ak-console-dot" />
+                        <span className="ak-console-dot" />
+                        <strong>Security operations console</strong>
+                    </div>
+                    <div className="ak-page-mock-body">
+                        <div className="ak-page-mock-column">
+                            <span>Active protections</span>
+                            {securityEvents.map((item) => (
+                                <div key={item.name} className="ak-page-mock-row">
+                                    <strong>{item.verdict}</strong>
+                                    <div>
+                                        <p>{item.name}</p>
+                                        <small>{item.detail}</small>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="ak-page-mock-column ak-page-mock-side">
+                            <span>Protection coverage</span>
+                            <div className="ak-metric-stack">
+                                <div>Device runtime</div>
+                                <div>Endpoint actions</div>
+                                <div>Cross-boundary execution</div>
+                                <div>Enterprise protection posture</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="ak-company-note">
                     <h3>Security stance</h3>
@@ -275,6 +356,28 @@ function IntelligencePage() {
                         </article>
                     ))}
                 </div>
+                <div className="ak-page-mock ak-page-mock-intel">
+                    <div className="ak-page-mock-topbar">
+                        <span className="ak-console-dot" />
+                        <span className="ak-console-dot" />
+                        <span className="ak-console-dot" />
+                        <strong>Threat intelligence board</strong>
+                    </div>
+                    <div className="ak-intel-grid">
+                        {threatSignals.map((item) => (
+                            <div key={item.title} className={`ak-intel-card ak-${item.tone}`}>
+                                <span>{item.title}</span>
+                                <strong>{item.value}</strong>
+                            </div>
+                        ))}
+                        <div className="ak-intel-map">
+                            <div className="ak-intel-map-node ak-intel-map-node-one" />
+                            <div className="ak-intel-map-node ak-intel-map-node-two" />
+                            <div className="ak-intel-map-node ak-intel-map-node-three" />
+                            <div className="ak-intel-map-node ak-intel-map-node-four" />
+                        </div>
+                    </div>
+                </div>
                 <div className="ak-company-note">
                     <h3>Why intelligence matters</h3>
                     <p>
@@ -308,6 +411,37 @@ function GovernancePage() {
                             <p>{item.copy}</p>
                         </article>
                     ))}
+                </div>
+                <div className="ak-page-mock ak-page-mock-governance">
+                    <div className="ak-page-mock-topbar">
+                        <span className="ak-console-dot" />
+                        <span className="ak-console-dot" />
+                        <span className="ak-console-dot" />
+                        <strong>Governance and evidence board</strong>
+                    </div>
+                    <div className="ak-page-mock-body">
+                        <div className="ak-page-mock-column">
+                            <span>Layer interactions</span>
+                            <div className="ak-governance-matrix">
+                                {governanceLayers.slice(0, 4).map((item) => (
+                                    <div key={item.title} className="ak-governance-matrix-row">
+                                        <strong>{item.layer}</strong>
+                                        <p>{item.title}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="ak-page-mock-column ak-page-mock-side">
+                            <span>Evidence output</span>
+                            <div className="ak-proof-list">
+                                {evidenceRows.map((row) => (
+                                    <div key={row.label} className="ak-proof-item">
+                                        {row.label}: {row.value}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="ak-company-note">
                     <h3>Evidence matters</h3>
