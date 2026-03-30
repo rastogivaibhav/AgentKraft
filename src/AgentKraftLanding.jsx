@@ -35,11 +35,74 @@ const signalRows = [
     { label: "Deployment posture", value: "Pilot ready", tone: "neutral" },
 ];
 
+const tickerItems = [
+    "Govern live agent traffic",
+    "Issue sovereign verdicts before irreversible actions",
+    "Push controls to endpoint runtime",
+    "Generate audit-ready receipts",
+    "Ship pilots with evidence, not just dashboards",
+];
+
+const operatingModel = [
+    {
+        step: "01",
+        title: "Observe every runtime",
+        copy: "Ingest traces, prompts, model calls, budgets, and workflow transitions from the control plane.",
+    },
+    {
+        step: "02",
+        title: "Apply sovereign policy",
+        copy: "Use layered governance, legal packs, company constitutions, and precedence to compute a final decision.",
+    },
+    {
+        step: "03",
+        title: "Enforce where it matters",
+        copy: "Intervene at API, workflow, and endpoint runtime before sensitive actions escape the blast radius.",
+    },
+    {
+        step: "04",
+        title: "Prove and improve",
+        copy: "Seal receipts, watch telemetry, and turn operational evidence into safer releases and stronger trust.",
+    },
+];
+
+const useCases = [
+    {
+        title: "Regulated enterprise copilots",
+        text: "Keep finance, health, and internal ops agents productive without losing approval chains, evidence, or policy control.",
+    },
+    {
+        title: "Autonomous workflow release gates",
+        text: "Let agents move fast in low-risk paths while routing sensitive writes, transfers, and external actions through sovereign review.",
+    },
+    {
+        title: "Endpoint and runtime assurance",
+        text: "Carry governance beyond dashboards so policy follows the action all the way down to local runtime execution.",
+    },
+];
+
 export default function AgentKraftLanding() {
     return (
         <div className="ak-page">
             <div className="ak-noise" aria-hidden="true" />
+            <header className="ak-nav-shell">
+                <div className="ak-nav">
+                    <a className="ak-brand" href="#top">
+                        <span className="ak-brand-mark" />
+                        <span>AgentKraft</span>
+                    </a>
+                    <nav className="ak-nav-links" aria-label="Primary">
+                        <a href="#platform">Platform</a>
+                        <a href="#architecture">Architecture</a>
+                        <a href="#operating-model">Operating model</a>
+                        <a href="#use-cases">Use cases</a>
+                    </nav>
+                    <a className="ak-button ak-button-secondary ak-nav-cta" href="#contact">Book a pilot</a>
+                </div>
+            </header>
+
             <section className="ak-hero">
+                <div id="top" />
                 <div className="ak-hero-copy">
                     <div className="ak-kicker">AGENTKRAFT</div>
                     <h1>Enterprise AI control, with sovereign governance at runtime.</h1>
@@ -89,6 +152,14 @@ export default function AgentKraftLanding() {
                         <strong>SEALED</strong>
                         <small>Immutable governance evidence</small>
                     </div>
+                </div>
+            </section>
+
+            <section className="ak-ticker" aria-label="Key capabilities">
+                <div className="ak-ticker-track">
+                    {[...tickerItems, ...tickerItems].map((item, index) => (
+                        <span key={`${item}-${index}`} className="ak-ticker-item">{item}</span>
+                    ))}
                 </div>
             </section>
 
@@ -153,6 +224,45 @@ export default function AgentKraftLanding() {
                 </div>
             </section>
 
+            <section className="ak-operating-model" id="operating-model">
+                <div className="ak-section-heading">
+                    <span>Operating Model</span>
+                    <h2>From telemetry to verdict to enforcement.</h2>
+                    <p>
+                        The stack is designed to feel coherent in production: one control narrative, one risk language,
+                        and one place to understand why an action was allowed, blocked, or escalated.
+                    </p>
+                </div>
+                <div className="ak-operating-grid">
+                    {operatingModel.map((item) => (
+                        <article key={item.step} className="ak-operating-card">
+                            <span>{item.step}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.copy}</p>
+                        </article>
+                    ))}
+                </div>
+            </section>
+
+            <section className="ak-use-cases" id="use-cases">
+                <div className="ak-section-heading">
+                    <span>Use Cases</span>
+                    <h2>Built for teams that need more than guardrails.</h2>
+                    <p>
+                        This is for organizations moving real work through AI systems and needing something stronger than
+                        “monitor and hope.”
+                    </p>
+                </div>
+                <div className="ak-use-case-grid">
+                    {useCases.map((item) => (
+                        <article key={item.title} className="ak-use-case-card">
+                            <h3>{item.title}</h3>
+                            <p>{item.text}</p>
+                        </article>
+                    ))}
+                </div>
+            </section>
+
             <section className="ak-future">
                 <div className="ak-section-heading">
                     <span>Future</span>
@@ -171,6 +281,23 @@ export default function AgentKraftLanding() {
                     <div className="ak-future-band ak-future-band-right">
                         <span>Tomorrow</span>
                         <strong>Operate the sovereign runtime stack for enterprise agents.</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section className="ak-contact" id="contact">
+                <div className="ak-contact-panel">
+                    <div>
+                        <span>Next Step</span>
+                        <h2>Launch AgentKraft as a category-defining control stack.</h2>
+                        <p>
+                            Start with a focused pilot, prove that you can govern real agent actions, and expand into a
+                            trusted enterprise runtime layer.
+                        </p>
+                    </div>
+                    <div className="ak-contact-actions">
+                        <a className="ak-button ak-button-primary" href="mailto:founders@agentkraft.tech">Contact founders</a>
+                        <a className="ak-button ak-button-secondary" href="#top">Back to top</a>
                     </div>
                 </div>
             </section>

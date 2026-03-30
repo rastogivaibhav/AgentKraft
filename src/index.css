@@ -37,6 +37,69 @@ a {
     linear-gradient(180deg, #05080E 0%, #08101A 52%, #05080E 100%);
 }
 
+.ak-nav-shell {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 18px 20px 0;
+}
+
+.ak-nav {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(6, 10, 18, 0.72);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+}
+
+.ak-brand,
+.ak-nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.ak-brand {
+  gap: 10px;
+  text-decoration: none;
+  font-family: "Space Grotesk", "Outfit", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.ak-brand-mark {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #89f4ff 0%, #ffcb7e 100%);
+  box-shadow: 0 0 20px rgba(137, 244, 255, 0.5);
+}
+
+.ak-nav-links {
+  gap: 22px;
+}
+
+.ak-nav-links a {
+  color: rgba(232, 236, 244, 0.76);
+  text-decoration: none;
+  font-size: 0.96rem;
+}
+
+.ak-nav-links a:hover {
+  color: #ffffff;
+}
+
+.ak-nav-cta {
+  min-height: 42px;
+  padding: 0 16px;
+}
+
 .ak-noise {
   position: absolute;
   inset: 0;
@@ -52,6 +115,8 @@ a {
 .ak-hero,
 .ak-platform,
 .ak-architecture,
+.ak-operating-model,
+.ak-use-cases,
 .ak-future {
   position: relative;
   z-index: 1;
@@ -306,8 +371,51 @@ a {
 
 .ak-platform,
 .ak-architecture,
+.ak-operating-model,
+.ak-use-cases,
 .ak-future {
   padding: 48px 0;
+}
+
+.ak-ticker {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  width: min(1280px, calc(100% - 40px));
+  margin: 10px auto 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.ak-ticker-track {
+  display: flex;
+  width: max-content;
+  gap: 18px;
+  padding: 14px 0;
+  animation: akTicker 28s linear infinite;
+}
+
+.ak-ticker-item {
+  position: relative;
+  padding-left: 20px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(232, 236, 244, 0.72);
+}
+
+.ak-ticker-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #89f4ff 0%, #ffcb7e 100%);
+  transform: translateY(-50%);
 }
 
 .ak-section-heading {
@@ -475,6 +583,67 @@ a {
 .ak-cool strong { color: #8bdcf2; }
 .ak-neutral strong { color: #f4f7ff; }
 
+.ak-operating-grid,
+.ak-use-case-grid {
+  display: grid;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.ak-operating-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.ak-use-case-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ak-operating-card,
+.ak-use-case-card,
+.ak-contact-panel {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 15, 24, 0.62);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.ak-operating-card,
+.ak-use-case-card {
+  padding: 24px;
+  border-radius: 28px;
+}
+
+.ak-operating-card span,
+.ak-contact-panel span {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8bdcf2;
+}
+
+.ak-operating-card h3,
+.ak-use-case-card h3,
+.ak-contact-panel h2 {
+  font-family: "Space Grotesk", "Outfit", sans-serif;
+  letter-spacing: -0.04em;
+}
+
+.ak-operating-card h3,
+.ak-use-case-card h3 {
+  font-size: 1.45rem;
+  margin-bottom: 12px;
+}
+
+.ak-operating-card p,
+.ak-use-case-card p,
+.ak-contact-panel p {
+  color: rgba(232, 236, 244, 0.72);
+  line-height: 1.7;
+}
+
 .ak-future-strip {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -518,6 +687,36 @@ a {
   letter-spacing: -0.05em;
 }
 
+.ak-contact {
+  position: relative;
+  z-index: 1;
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 48px 0 90px;
+}
+
+.ak-contact-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  padding: 28px;
+  border-radius: 32px;
+}
+
+.ak-contact-panel h2 {
+  font-size: clamp(2.1rem, 4vw, 3.4rem);
+  line-height: 0.98;
+  margin-bottom: 14px;
+}
+
+.ak-contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
 @keyframes akRotate {
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
@@ -536,12 +735,28 @@ a {
   50% { transform: scale(1.07); }
 }
 
+@keyframes akTicker {
+  to { transform: translateX(-50%); }
+}
+
 @media (max-width: 980px) {
   .ak-hero,
   .ak-architecture-panel,
+  .ak-operating-grid,
+  .ak-use-case-grid,
+  .ak-contact-panel,
   .ak-product-grid,
   .ak-future-strip {
     grid-template-columns: 1fr;
+  }
+
+  .ak-nav {
+    border-radius: 28px;
+    padding: 16px;
+  }
+
+  .ak-nav-links {
+    display: none;
   }
 
   .ak-hero {
@@ -580,13 +795,23 @@ a {
   .ak-hero-visual {
     flex-direction: column;
   }
+
+  .ak-contact-actions {
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 640px) {
   .ak-hero,
   .ak-platform,
   .ak-architecture,
+  .ak-operating-model,
+  .ak-use-cases,
   .ak-future {
+    width: min(100% - 24px, 1200px);
+  }
+
+  .ak-contact {
     width: min(100% - 24px, 1200px);
   }
 
@@ -620,5 +845,9 @@ a {
 
   .ak-beam {
     width: 180px;
+  }
+
+  .ak-nav-shell {
+    padding: 12px 12px 0;
   }
 }
