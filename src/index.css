@@ -1,0 +1,624 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  min-height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "Outfit", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #05080E;
+  color: #E8ECF4;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: rgba(45, 127, 249, 0.3);
+  color: #E8ECF4;
+}
+
+.ak-page {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(13, 132, 175, 0.18), transparent 32%),
+    radial-gradient(circle at 80% 10%, rgba(255, 174, 73, 0.14), transparent 26%),
+    radial-gradient(circle at bottom right, rgba(45, 127, 249, 0.14), transparent 32%),
+    linear-gradient(180deg, #05080E 0%, #08101A 52%, #05080E 100%);
+}
+
+.ak-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 140px 140px;
+  mask-image: radial-gradient(circle at center, black 48%, transparent 100%);
+}
+
+.ak-hero,
+.ak-platform,
+.ak-architecture,
+.ak-future {
+  position: relative;
+  z-index: 1;
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.ak-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: 40px;
+  align-items: center;
+  padding: 84px 0 48px;
+}
+
+.ak-kicker,
+.ak-section-heading span,
+.ak-product-header span,
+.ak-floating-card span,
+.ak-future-band span,
+.ak-pillar span {
+  font-family: "JetBrains Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+}
+
+.ak-kicker {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: #8bdcf2;
+  font-size: 0.78rem;
+}
+
+.ak-hero h1,
+.ak-section-heading h2 {
+  font-family: "Space Grotesk", "Outfit", sans-serif;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.ak-hero h1 {
+  max-width: 10.5ch;
+  font-size: clamp(3.6rem, 9vw, 6.8rem);
+}
+
+.ak-subtitle,
+.ak-section-heading p,
+.ak-product-card p,
+.ak-pillar p,
+.ak-flow-node small {
+  color: rgba(232, 236, 244, 0.74);
+  line-height: 1.65;
+}
+
+.ak-subtitle {
+  max-width: 640px;
+  margin-top: 20px;
+  font-size: 1.06rem;
+}
+
+.ak-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.ak-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.ak-button:hover {
+  transform: translateY(-1px);
+}
+
+.ak-button-primary {
+  color: #041018;
+  background: linear-gradient(135deg, #89f4ff 0%, #ffcb7e 100%);
+}
+
+.ak-button-secondary {
+  color: #E8ECF4;
+  border: 1px solid rgba(139, 220, 242, 0.32);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+}
+
+.ak-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.ak-pillar,
+.ak-product-card,
+.ak-architecture-panel,
+.ak-floating-card,
+.ak-signal-row,
+.ak-future-band {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 15, 24, 0.62);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.ak-pillar {
+  padding: 16px;
+  border-radius: 22px;
+}
+
+.ak-pillar span {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 0.68rem;
+  color: #8bdcf2;
+}
+
+.ak-pillar p {
+  font-size: 0.94rem;
+}
+
+.ak-hero-visual {
+  position: relative;
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ak-orb,
+.ak-orbit,
+.ak-radar,
+.ak-radar-ring {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.ak-orb-core {
+  width: 170px;
+  height: 170px;
+  background:
+    radial-gradient(circle at 30% 30%, #fef2b0 0%, #a1f1ff 38%, #2d7ff9 70%, rgba(45, 127, 249, 0.08) 100%);
+  filter: blur(1px);
+  box-shadow: 0 0 50px rgba(82, 185, 255, 0.45), 0 0 140px rgba(255, 195, 107, 0.22);
+  animation: akPulse 5.5s ease-in-out infinite;
+}
+
+.ak-orbit {
+  inset: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(139, 220, 242, 0.18);
+}
+
+.ak-orbit-one { width: 280px; height: 280px; animation: akRotate 14s linear infinite; }
+.ak-orbit-two { width: 410px; height: 410px; animation: akRotateReverse 20s linear infinite; }
+.ak-orbit-three { width: 540px; height: 540px; animation: akRotate 26s linear infinite; }
+
+.ak-beam {
+  position: absolute;
+  width: 320px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(137, 244, 255, 0.52), transparent);
+  filter: blur(0.4px);
+}
+
+.ak-beam-left {
+  transform: rotate(-16deg) translate(-90px, -80px);
+}
+
+.ak-beam-right {
+  transform: rotate(18deg) translate(90px, 80px);
+}
+
+.ak-radar {
+  width: 620px;
+  height: 620px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  opacity: 0.45;
+}
+
+.ak-radar-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(137, 244, 255, 0.24), transparent 20%, transparent 100%);
+  animation: akRotate 9s linear infinite;
+}
+
+.ak-radar-ring {
+  inset: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.ak-radar-ring-one { width: 210px; height: 210px; }
+.ak-radar-ring-two { width: 360px; height: 360px; }
+.ak-radar-ring-three { width: 510px; height: 510px; }
+
+.ak-floating-card {
+  position: absolute;
+  display: grid;
+  gap: 6px;
+  width: 240px;
+  padding: 16px 18px;
+  border-radius: 20px;
+}
+
+.ak-floating-card strong,
+.ak-flow-node strong,
+.ak-signal-row strong,
+.ak-future-band strong,
+.ak-product-header h3 {
+  font-family: "Space Grotesk", "Outfit", sans-serif;
+}
+
+.ak-floating-card strong {
+  font-size: 1.65rem;
+  letter-spacing: -0.04em;
+}
+
+.ak-floating-card small {
+  color: rgba(232, 236, 244, 0.56);
+}
+
+.ak-card-top {
+  top: 74px;
+  right: 18px;
+  animation: akFloat 6s ease-in-out infinite;
+}
+
+.ak-card-middle {
+  bottom: 132px;
+  left: 12px;
+  animation: akFloat 8.5s ease-in-out infinite;
+}
+
+.ak-card-bottom {
+  right: 44px;
+  bottom: 52px;
+  animation: akFloat 7.2s ease-in-out infinite;
+}
+
+.ak-platform,
+.ak-architecture,
+.ak-future {
+  padding: 48px 0;
+}
+
+.ak-section-heading {
+  max-width: 700px;
+}
+
+.ak-section-heading span {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-size: 0.74rem;
+  color: #8bdcf2;
+}
+
+.ak-section-heading h2 {
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+}
+
+.ak-section-heading p {
+  margin-top: 16px;
+  font-size: 1.02rem;
+}
+
+.ak-product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.ak-product-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  padding: 24px;
+  border-radius: 28px;
+}
+
+.ak-card-glow {
+  position: absolute;
+  inset: auto -40px -50px auto;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  filter: blur(24px);
+  opacity: 0.3;
+}
+
+.ak-teal .ak-card-glow { background: #00b8d4; }
+.ak-gold .ak-card-glow { background: #ffbe5c; }
+.ak-blue .ak-card-glow { background: #2d7ff9; }
+
+.ak-product-header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 14px;
+}
+
+.ak-product-header span {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 0.68rem;
+  color: rgba(232, 236, 244, 0.6);
+}
+
+.ak-product-header h3 {
+  font-size: 2rem;
+  letter-spacing: -0.05em;
+}
+
+.ak-product-card p,
+.ak-product-card ul {
+  position: relative;
+  z-index: 1;
+}
+
+.ak-product-card ul {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  margin-top: 18px;
+}
+
+.ak-product-card li {
+  position: relative;
+  padding-left: 18px;
+  color: rgba(232, 236, 244, 0.84);
+}
+
+.ak-product-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #89f4ff, #ffcb7e);
+}
+
+.ak-architecture-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: 18px;
+  padding: 22px;
+  margin-top: 28px;
+  border-radius: 30px;
+}
+
+.ak-architecture-flow {
+  display: grid;
+  align-items: center;
+  gap: 18px;
+}
+
+.ak-flow-node {
+  padding: 22px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ak-flow-node-accent {
+  background: linear-gradient(135deg, rgba(45, 127, 249, 0.2), rgba(0, 184, 212, 0.14));
+  border-color: rgba(139, 220, 242, 0.24);
+}
+
+.ak-flow-node strong {
+  display: block;
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+}
+
+.ak-flow-link {
+  justify-self: center;
+  width: 2px;
+  height: 54px;
+  background: linear-gradient(180deg, rgba(137, 244, 255, 0.05), rgba(137, 244, 255, 0.85), rgba(255, 203, 126, 0.05));
+  box-shadow: 0 0 20px rgba(137, 244, 255, 0.22);
+}
+
+.ak-signal-board {
+  display: grid;
+  gap: 14px;
+}
+
+.ak-signal-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 20px;
+  border-radius: 20px;
+}
+
+.ak-signal-row span {
+  color: rgba(232, 236, 244, 0.68);
+}
+
+.ak-signal-row strong {
+  font-size: 1.1rem;
+}
+
+.ak-good strong { color: #53edb8; }
+.ak-warm strong { color: #ffc56f; }
+.ak-cool strong { color: #8bdcf2; }
+.ak-neutral strong { color: #f4f7ff; }
+
+.ak-future-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.ak-future-band {
+  position: relative;
+  overflow: hidden;
+  padding: 26px;
+  border-radius: 28px;
+}
+
+.ak-future-band::after {
+  content: "";
+  position: absolute;
+  inset: auto auto -35% 55%;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  filter: blur(36px);
+  opacity: 0.3;
+}
+
+.ak-future-band-left::after { background: #00b8d4; }
+.ak-future-band-right::after { background: #ffbe5c; }
+
+.ak-future-band span {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 0.7rem;
+  color: rgba(232, 236, 244, 0.64);
+}
+
+.ak-future-band strong {
+  display: block;
+  max-width: 18ch;
+  font-size: 2rem;
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+}
+
+@keyframes akRotate {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes akRotateReverse {
+  to { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+@keyframes akFloat {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -14px, 0); }
+}
+
+@keyframes akPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.07); }
+}
+
+@media (max-width: 980px) {
+  .ak-hero,
+  .ak-architecture-panel,
+  .ak-product-grid,
+  .ak-future-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .ak-hero {
+    padding-top: 56px;
+  }
+
+  .ak-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .ak-hero-visual {
+    min-height: 500px;
+  }
+
+  .ak-radar {
+    width: 460px;
+    height: 460px;
+  }
+
+  .ak-orbit-one { width: 220px; height: 220px; }
+  .ak-orbit-two { width: 320px; height: 320px; }
+  .ak-orbit-three { width: 430px; height: 430px; }
+
+  .ak-card-top,
+  .ak-card-middle,
+  .ak-card-bottom {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: auto;
+    margin-top: 12px;
+    width: min(100%, 300px);
+  }
+
+  .ak-hero-visual {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .ak-hero,
+  .ak-platform,
+  .ak-architecture,
+  .ak-future {
+    width: min(100% - 24px, 1200px);
+  }
+
+  .ak-hero h1 {
+    max-width: none;
+    font-size: clamp(2.7rem, 14vw, 4.2rem);
+  }
+
+  .ak-radar {
+    width: 320px;
+    height: 320px;
+  }
+
+  .ak-orbit-one { width: 170px; height: 170px; }
+  .ak-orbit-two { width: 240px; height: 240px; }
+  .ak-orbit-three { width: 310px; height: 310px; }
+
+  .ak-orb-core {
+    width: 116px;
+    height: 116px;
+  }
+
+  .ak-floating-card strong,
+  .ak-future-band strong {
+    font-size: 1.55rem;
+  }
+
+  .ak-product-header h3 {
+    font-size: 1.6rem;
+  }
+
+  .ak-beam {
+    width: 180px;
+  }
+}
