@@ -71,39 +71,39 @@ const intelligenceSignals = [
 
 const governanceLayers = [
     {
-        layer: "Layer 1",
-        title: "Constitution",
-        copy: "Company red lines, principles, and executive control posture.",
+        layer: "Domain 1",
+        title: "Organizational control",
+        copy: "Business red lines, executive posture, and non-negotiable operating boundaries.",
     },
     {
-        layer: "Layer 2",
-        title: "AI laws",
-        copy: "AI-specific legal obligations and enforceable constraints.",
+        layer: "Domain 2",
+        title: "External obligations",
+        copy: "Jurisdiction-aware duties, legal expectations, and policy-sensitive obligations.",
     },
     {
-        layer: "Layer 3",
-        title: "Data frameworks",
-        copy: "Privacy, data protection, and regional framework controls.",
+        layer: "Domain 3",
+        title: "Data and trust controls",
+        copy: "Privacy, sensitive-data posture, and enterprise trust requirements.",
     },
     {
-        layer: "Layer 4",
-        title: "Agent governance",
-        copy: "Execution scope, authority, approvals, and risk ownership per agent.",
+        layer: "Domain 4",
+        title: "Execution scope",
+        copy: "Authority boundaries, approval posture, and execution risk ownership.",
     },
     {
-        layer: "Layer 5",
-        title: "Skill and tool control",
-        copy: "Govern how agents use tools, APIs, and side-effecting capabilities.",
+        layer: "Domain 5",
+        title: "Capability control",
+        copy: "How agents can use tools, integrations, and side-effecting capabilities.",
     },
     {
-        layer: "Layer 6",
-        title: "Execution coordination",
-        copy: "Constrain multi-agent handoffs, workflow movement, and organization-wide execution logic.",
+        layer: "Domain 6",
+        title: "Workflow coordination",
+        copy: "Cross-agent movement, workflow boundaries, and coordinated execution safeguards.",
     },
     {
-        layer: "Layer 7",
-        title: "Evidence and enforcement",
-        copy: "Hash-chained audit logs, receipts, and enforcement state linked to real execution outcomes.",
+        layer: "Domain 7",
+        title: "Assurance and evidence",
+        copy: "Operational assurance, audit visibility, and trusted evidence tied to real outcomes.",
     },
 ];
 
@@ -118,7 +118,7 @@ const productDetails = [
         name: "AGS Sovereign",
         eyebrow: "7-layer governance engine",
         summary: "The policy and decision core that evaluates real-world agent risk through layered governance rather than flat rules or passive evals.",
-        points: ["7-layer governance model", "Deterministic verdicting for high-risk actions", "Hash-chained decision evidence"],
+        points: ["Multi-domain governance model", "Deterministic verdicting for high-risk actions", "Trusted decision evidence"],
     },
     {
         name: "Gavel Runtime",
@@ -144,11 +144,11 @@ const applicationArchitectures = [
         name: "AGS Sovereign",
         eyebrow: "Governance decision engine",
         summary: "The deterministic policy core that evaluates proposed actions before execution and returns permit, deny, or escalate with evidence.",
-        flow: ["Proposed action", "Layered evaluation", "Conflict precedence", "Verdict", "Ledger and surveillance"],
+        flow: ["Proposed action", "Multi-domain evaluation", "Risk and conflict checks", "Verdict", "Evidence and monitoring"],
         responsibilities: [
-            "Apply layered governance from constitution through surveillance",
+            "Apply governance across business, legal, data, workflow, and runtime domains",
             "Produce deterministic verdicts for high-risk execution paths",
-            "Keep audit evidence and policy provenance linked to decisions",
+            "Keep decision evidence and operational provenance linked to outcomes",
         ],
     },
     {
@@ -167,8 +167,8 @@ const applicationArchitectures = [
 const architectureRails = [
     { title: "Device", body: "Endpoint enforcement, runtime bridge, machine-authenticated posture." },
     { title: "Network", body: "Traffic visibility, cross-boundary actions, and threat intelligence." },
-    { title: "Governance", body: "7-layer decisioning, verdict authority, and execution constraints." },
-    { title: "Enterprise", body: "Organization-wide traceability, protection, and audit evidence." },
+    { title: "Governance", body: "Multi-domain decisioning, verdict authority, and execution safeguards." },
+    { title: "Enterprise", body: "Organization-wide traceability, protection, and trusted evidence." },
 ];
 
 const deploymentModels = [
@@ -179,7 +179,7 @@ const deploymentModels = [
 ];
 
 const trustSignals = [
-    "Hash-chained audit logs",
+    "Trusted audit evidence",
     "Organization-wide traceability",
     "On-device and on-network coverage",
     "Deterministic verdict evidence",
@@ -199,7 +199,7 @@ const threatSignals = [
 
 const evidenceRows = [
     { label: "Decision receipts", value: "Immutable" },
-    { label: "Execution logs", value: "Hash chained" },
+    { label: "Execution logs", value: "Protected" },
     { label: "Audit readiness", value: "Operator visible" },
 ];
 
@@ -444,10 +444,10 @@ function GovernancePage() {
             <section className="ak-page-hero">
                 <div className="ak-section-heading">
                     <span>Governance</span>
-                    <h2>7 layers designed for real-world enterprise challenges.</h2>
+                    <h2>Governance designed for real-world enterprise challenges.</h2>
                     <p>
-                        AgentKraft is not built on flat policies alone. The governance model is layered to mirror how
-                        real organizations manage law, execution, risk, tools, and accountability.
+                        AgentKraft is not built on flat policies alone. The governance system is structured across
+                        multiple control domains so enterprises can manage law, execution, risk, tooling, and accountability together.
                     </p>
                 </div>
                 <div className="ak-governance-grid">
@@ -468,7 +468,7 @@ function GovernancePage() {
                     </div>
                     <div className="ak-page-mock-body">
                         <div className="ak-page-mock-column">
-                            <span>Layer interactions</span>
+                            <span>Control interactions</span>
                             <div className="ak-governance-matrix">
                                 {governanceLayers.slice(0, 4).map((item) => (
                                     <div key={item.title} className="ak-governance-matrix-row">
@@ -491,10 +491,10 @@ function GovernancePage() {
                     </div>
                 </div>
                 <div className="ak-company-note">
-                    <h3>Evidence matters</h3>
+                    <h3>Assurance matters</h3>
                     <p>
                         Governance is only real if decisions and execution trails can be trusted later. That is why the
-                        model is paired with hash-chained logs and decision evidence.
+                        model is paired with durable evidence, operational traceability, and reviewable decision records.
                     </p>
                 </div>
             </section>

@@ -11,7 +11,7 @@ const suiteCards = [
         eyebrow: "Governance Engine",
         description: "The sovereign policy core that applies multi-layer governance to real-world agent execution and high-risk actions.",
         accent: "gold",
-        bullets: ["7-layer governance model", "Deterministic verdicting", "Hash-chained audit evidence"],
+        bullets: ["Multi-domain governance", "Deterministic verdicting", "Trusted audit evidence"],
     },
     {
         name: "Gavel Runtime",
@@ -42,21 +42,21 @@ const coverageCards = [
 ];
 
 const governanceLayers = [
-    "Constitution",
-    "AI laws",
-    "Data frameworks",
-    "Agent governance",
-    "Skill and tool control",
-    "Execution coordination",
-    "Audit and enforcement evidence",
+    "Organization",
+    "Obligations",
+    "Data trust",
+    "Execution scope",
+    "Capabilities",
+    "Coordination",
+    "Assurance",
 ];
 
 const heroBadges = ["On-device", "On-network", "Enterprise-wide", "Audit-ready"];
 
 const signalRows = [
     { label: "Execution coverage", value: "Device + network + runtime", tone: "good" },
-    { label: "Governance model", value: "7 layers", tone: "warm" },
-    { label: "Evidence chain", value: "Hash chained", tone: "cool" },
+    { label: "Governance model", value: "Multi-domain", tone: "warm" },
+    { label: "Evidence posture", value: "Audit-ready", tone: "cool" },
     { label: "Operating posture", value: "Pilot ready", tone: "neutral" },
 ];
 
@@ -76,8 +76,8 @@ const operatingModel = [
     },
     {
         step: "02",
-        title: "Apply 7-layer governance",
-        copy: "Evaluate real-world challenges through layered governance instead of relying on flat policies or passive eval outputs.",
+        title: "Apply multi-domain governance",
+        copy: "Evaluate real-world challenges through structured control domains instead of relying on flat policies or passive eval outputs.",
     },
     {
         step: "03",
@@ -87,7 +87,7 @@ const operatingModel = [
     {
         step: "04",
         title: "Prove what happened",
-        copy: "Generate hash-chained evidence and audit trails that stand up to security, audit, and compliance review.",
+        copy: "Generate durable evidence and audit trails that stand up to security, audit, and compliance review.",
     },
 ];
 
@@ -119,7 +119,7 @@ const suiteSnapshots = {
     },
     "AGS Sovereign": {
         labels: ["Governance", "Verdicts", "Evidence"],
-        lines: ["7-layer control model", "Deterministic execution decisions", "Hash-chained audit logs"],
+        lines: ["Multi-domain control model", "Deterministic execution decisions", "Trusted audit logs"],
     },
     "Gavel Runtime": {
         labels: ["Device", "Network", "Runtime"],
@@ -143,7 +143,7 @@ export default function AgentKraftLanding() {
                     <p className="ak-subtitle">
                         AgentKraft brings together runtime control, governance decisioning, and endpoint enforcement so
                         teams can ship agents with on-device protection, on-network intelligence, enterprise-wide
-                        traceability, and audit-ready evidence.
+                        traceability, and reviewable evidence.
                     </p>
                     <div className="ak-cta-row">
                         <a className="ak-button ak-button-primary" href="#/platform">Explore the platform</a>
@@ -191,7 +191,7 @@ export default function AgentKraftLanding() {
                                 ))}
                             </div>
                             <div className="ak-console-panel ak-console-panel-accent">
-                                <span>7-layer governance</span>
+                                <span>Governance domains</span>
                                 <div className="ak-mini-stack">
                                     {governanceLayers.slice(0, 4).map((layer) => (
                                         <div key={layer}>{layer}</div>

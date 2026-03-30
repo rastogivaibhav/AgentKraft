@@ -27,7 +27,7 @@ describe("App", () => {
         window.location.hash = "#/governance";
         render(<App />);
 
-        expect(screen.getByText(/7 layers designed for real-world enterprise challenges/i)).toBeInTheDocument();
-        expect(screen.getByText(/evidence matters/i)).toBeInTheDocument();
+        expect(screen.getByText(/governance designed for real-world enterprise challenges/i)).toBeInTheDocument();
+        expect(screen.getByText(/assurance matters/i)).toBeInTheDocument();
     });
 });
