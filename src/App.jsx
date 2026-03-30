@@ -8,31 +8,54 @@ const pageMeta = {
     company: { title: "Company", href: "#/company" },
 };
 
+const platformPillars = [
+    {
+        label: "On-device security",
+        title: "Protect runtime where execution becomes real.",
+        copy: "Carry control to endpoint and local runtime paths instead of stopping at observability dashboards.",
+    },
+    {
+        label: "On-network intelligence",
+        title: "See and govern network-facing agent behavior.",
+        copy: "Track traffic, API use, cross-boundary actions, and execution risk across networked agent systems.",
+    },
+    {
+        label: "Enterprise-wide traceability",
+        title: "Follow agent behavior across the organization.",
+        copy: "Create one traceability layer across teams, business units, workflows, and operating environments.",
+    },
+    {
+        label: "Global execution protection",
+        title: "Protect how agents execute at scale.",
+        copy: "Apply consistent safeguards and governance across regions, tenants, and execution paths.",
+    },
+];
+
 const productDetails = [
     {
         name: "AgentFabric",
         eyebrow: "Runtime control plane",
-        summary: "The operator surface for prompts, traces, evals, budgets, releases, and runtime flow across enterprise agent systems.",
-        points: ["Trace live agent behavior", "Manage prompts and eval rollouts", "Run operations from one enterprise console"],
+        summary: "The control surface for runtime visibility, operator workflows, release posture, and enterprise-wide traceability.",
+        points: ["Cross-agent traceability", "Operational intelligence and release control", "Runtime visibility across the enterprise"],
     },
     {
         name: "AGS Sovereign",
-        eyebrow: "Sovereign decision engine",
-        summary: "The governance core that turns policy packs, constitutions, and runtime context into deterministic allow, deny, and escalate verdicts.",
-        points: ["Layered L1-L8 governance", "Jurisdiction-aware precedence", "Receipts and audit evidence"],
+        eyebrow: "7-layer governance engine",
+        summary: "The policy and decision core that evaluates real-world agent risk through layered governance rather than flat rules or passive evals.",
+        points: ["7-layer governance model", "Deterministic verdicting for high-risk actions", "Tamper-proof, hash-chained evidence"],
     },
     {
         name: "Gavel Runtime",
-        eyebrow: "Endpoint enforcement runtime",
-        summary: "The execution-side layer that carries governance all the way to runtime and endpoint actions instead of stopping at the dashboard.",
-        points: ["Local action interception", "Runtime heartbeat and sync", "Closer-to-risk enforcement"],
+        eyebrow: "Execution enforcement layer",
+        summary: "The runtime and endpoint layer that carries security, protection, and policy enforcement down to where agent execution actually happens.",
+        points: ["On-device and endpoint protection", "Runtime and network-aware interception", "Machine-authenticated enforcement path"],
     },
 ];
 
 const companyMilestones = [
-    { label: "Today", value: "Pilot-ready control stack with runtime visibility, sovereign governance, and endpoint enforcement." },
-    { label: "Next", value: "Integrated product surfaces, richer product screenshots, customer stories, and production deployment workflows." },
-    { label: "Future", value: "A full enterprise trust fabric for autonomous systems, from control plane to runtime edge." },
+    { label: "Today", value: "A pilot-ready protection stack covering runtime traceability, governance, and execution protection." },
+    { label: "Next", value: "Tighter product integration, richer product interfaces, and design-partner deployments in high-consequence environments." },
+    { label: "Future", value: "A global enterprise protection and intelligence layer for autonomous systems." },
 ];
 
 function getPageFromHash(hash) {
@@ -77,28 +100,27 @@ function PlatformPage() {
             <section className="ak-page-hero">
                 <div className="ak-section-heading">
                     <span>Platform</span>
-                    <h2>The control stack for enterprise AI in production.</h2>
+                    <h2>Protection across device, network, and enterprise execution.</h2>
                     <p>
-                        AgentKraft combines runtime operations, sovereign policy evaluation, and endpoint enforcement so
-                        teams can govern real work instead of just observing failures after the fact.
+                        AgentKraft is designed for a broader problem than plain policy checks or AI eval workflows. It
+                        combines execution protection, threat intelligence, traceability, and governance into one system.
                     </p>
                 </div>
                 <div className="ak-page-grid">
-                    <article className="ak-page-card">
-                        <span>Observe</span>
-                        <h3>See what your agents are doing.</h3>
-                        <p>Track live runtime state, prompts, model calls, budgets, and handoffs from a single operating surface.</p>
-                    </article>
-                    <article className="ak-page-card">
-                        <span>Decide</span>
-                        <h3>Apply sovereign policy before harm.</h3>
-                        <p>Use layered governance, legal packs, company constitutions, and precedence to compute deterministic verdicts.</p>
-                    </article>
-                    <article className="ak-page-card">
-                        <span>Enforce</span>
-                        <h3>Carry control to the point of execution.</h3>
-                        <p>Push policy from the dashboard down to workflow and endpoint runtime where risky actions actually happen.</p>
-                    </article>
+                    {platformPillars.map((pillar) => (
+                        <article key={pillar.label} className="ak-page-card">
+                            <span>{pillar.label}</span>
+                            <h3>{pillar.title}</h3>
+                            <p>{pillar.copy}</p>
+                        </article>
+                    ))}
+                </div>
+                <div className="ak-company-note">
+                    <h3>Why this matters</h3>
+                    <p>
+                        Most competitors solve a partial slice: observability, governance, or security. AgentKraft is
+                        being built to protect agent execution across the full operating environment.
+                    </p>
                 </div>
             </section>
         </div>
@@ -112,8 +134,11 @@ function ProductsPage() {
             <section className="ak-page-hero">
                 <div className="ak-section-heading">
                     <span>Products</span>
-                    <h2>Three products, one product story.</h2>
-                    <p>Each layer can stand alone, but together they create a much stronger enterprise platform for trusted AI operations.</p>
+                    <h2>Three products, one enterprise protection stack.</h2>
+                    <p>
+                        Internally the stack is modular. Externally it should feel like one serious system for agent
+                        intelligence, execution protection, and governance-backed control.
+                    </p>
                 </div>
                 <div className="ak-page-grid">
                     {productDetails.map((product) => (
@@ -141,10 +166,10 @@ function CompanyPage() {
             <section className="ak-page-hero">
                 <div className="ak-section-heading">
                     <span>Company</span>
-                    <h2>From today’s control stack to tomorrow’s trust fabric.</h2>
+                    <h2>From today’s control stack to tomorrow’s enterprise protection layer.</h2>
                     <p>
-                        AgentKraft is being shaped as a company around one idea: enterprises need stronger infrastructure
-                        for governing autonomous systems than dashboards, guardrails, and policy documents alone.
+                        AgentKraft is being built around one conviction: enterprises need stronger protection and
+                        intelligence for agents than dashboards, evals, and vanilla policy systems can provide.
                     </p>
                 </div>
                 <div className="ak-page-grid">
@@ -157,10 +182,10 @@ function CompanyPage() {
                     ))}
                 </div>
                 <div className="ak-company-note">
-                    <h3>Built for customers, legible to investors.</h3>
+                    <h3>Operating principle</h3>
                     <p>
-                        The commercial story is simple: help regulated and high-consequence teams put AI systems into
-                        production with visibility, governance, and enforceable control.
+                        The company should be presented as the stack that protects agent execution across device,
+                        network, governance, and enterprise accountability, not as a collection of partial tools.
                     </p>
                 </div>
             </section>
@@ -174,7 +199,7 @@ function Footer() {
             <div className="ak-footer-inner">
                 <div>
                     <strong>AgentKraft</strong>
-                    <p>Enterprise AI control with runtime governance, sovereign policy, and endpoint enforcement.</p>
+                    <p>Protection, intelligence, traceability, and governance for enterprise agent execution.</p>
                 </div>
                 <div className="ak-footer-links">
                     <a href="#/">Home</a>
