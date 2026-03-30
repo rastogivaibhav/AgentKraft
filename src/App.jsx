@@ -5,7 +5,6 @@ const pageMeta = {
     home: { title: "Home", href: "#/" },
     platform: { title: "Platform", href: "#/platform" },
     products: { title: "Products", href: "#/products" },
-    pricing: { title: "Pricing", href: "#/pricing" },
     company: { title: "Company", href: "#/company" },
 };
 
@@ -27,28 +26,6 @@ const productDetails = [
         eyebrow: "Endpoint enforcement runtime",
         summary: "The execution-side layer that carries governance all the way to runtime and endpoint actions instead of stopping at the dashboard.",
         points: ["Local action interception", "Runtime heartbeat and sync", "Closer-to-risk enforcement"],
-    },
-];
-
-const pricingTiers = [
-    {
-        name: "Pilot",
-        price: "From £12k",
-        label: "Best for first design partners",
-        bullets: ["One focused use case", "Platform setup + governance onboarding", "Founding-team support"],
-    },
-    {
-        name: "Production",
-        price: "Custom annual",
-        label: "Best for live operational rollouts",
-        bullets: ["Multi-team deployment", "SLA-backed support path", "Policy packs, receipts, and rollout governance"],
-        featured: true,
-    },
-    {
-        name: "Strategic",
-        price: "Contact us",
-        label: "Best for joint roadmap accounts",
-        bullets: ["Custom controls and integrations", "Executive architecture engagement", "Priority roadmap alignment"],
     },
 ];
 
@@ -157,41 +134,6 @@ function ProductsPage() {
     );
 }
 
-function PricingPage() {
-    return (
-        <div className="ak-page ak-page-view">
-            <div className="ak-noise" aria-hidden="true" />
-            <section className="ak-page-hero">
-                <div className="ak-section-heading">
-                    <span>Pricing</span>
-                    <h2>Structured for pilots, built for expansion.</h2>
-                    <p>
-                        The goal is to get into production with discipline, prove value on a constrained use case, and
-                        expand into a broader enterprise control layer from there.
-                    </p>
-                </div>
-                <div className="ak-price-grid">
-                    {pricingTiers.map((tier) => (
-                        <article
-                            key={tier.name}
-                            className={`ak-price-card${tier.featured ? " ak-price-card-featured" : ""}`}
-                        >
-                            <span>{tier.label}</span>
-                            <h3>{tier.name}</h3>
-                            <strong>{tier.price}</strong>
-                            <ul className="ak-page-list">
-                                {tier.bullets.map((bullet) => (
-                                    <li key={bullet}>{bullet}</li>
-                                ))}
-                            </ul>
-                        </article>
-                    ))}
-                </div>
-            </section>
-        </div>
-    );
-}
-
 function CompanyPage() {
     return (
         <div className="ak-page ak-page-view">
@@ -238,7 +180,6 @@ function Footer() {
                     <a href="#/">Home</a>
                     <a href="#/platform">Platform</a>
                     <a href="#/products">Products</a>
-                    <a href="#/pricing">Pricing</a>
                     <a href="#/company">Company</a>
                 </div>
             </div>
@@ -263,7 +204,6 @@ export default function App() {
     let content = <AgentKraftLanding />;
     if (page === "platform") content = <PlatformPage />;
     if (page === "products") content = <ProductsPage />;
-    if (page === "pricing") content = <PricingPage />;
     if (page === "company") content = <CompanyPage />;
 
     return (
