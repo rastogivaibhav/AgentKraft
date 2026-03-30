@@ -14,13 +14,13 @@ describe("App", () => {
         expect(screen.getByText(/built for the parts competitors leave fragmented/i)).toBeInTheDocument();
     });
 
-    it("renders the company page when the company route is selected", () => {
-        window.location.hash = "#/company";
+    it("renders the products page when the products route is selected", () => {
+        window.location.hash = "#/products";
         render(<App />);
 
-        expect(screen.getByText(/from today's control stack to tomorrow's enterprise protection layer/i)).toBeInTheDocument();
-        expect(screen.getByText(/operating principle/i)).toBeInTheDocument();
-        expect(screen.getByText(/a stack you can integrate without guessing/i)).toBeInTheDocument();
+        expect(screen.getByText(/three products, one enterprise protection stack/i)).toBeInTheDocument();
+        expect(screen.getByText(/agentfabric in the stack/i)).toBeInTheDocument();
+        expect(screen.getByText(/gavel runtime in the stack/i)).toBeInTheDocument();
     });
 
     it("renders the governance page when the governance route is selected", () => {
