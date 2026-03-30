@@ -108,22 +108,6 @@ export default function AgentKraftLanding() {
     return (
         <div className="ak-page">
             <div className="ak-noise" aria-hidden="true" />
-            <header className="ak-nav-shell">
-                <div className="ak-nav">
-                    <a className="ak-brand" href="#top">
-                        <span className="ak-brand-mark" />
-                        <span>AgentKraft</span>
-                    </a>
-                    <nav className="ak-nav-links" aria-label="Primary">
-                        <a href="#platform">Platform</a>
-                        <a href="#architecture">Architecture</a>
-                        <a href="#operating-model">Operating model</a>
-                        <a href="#use-cases">Use cases</a>
-                    </nav>
-                    <a className="ak-button ak-button-secondary ak-nav-cta" href="#contact">Book a pilot</a>
-                </div>
-            </header>
-
             <section className="ak-hero" id="top">
                 <div className="ak-hero-copy">
                     <div className="ak-badge-row">
