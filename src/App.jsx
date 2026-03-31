@@ -1,4 +1,5 @@
 import { startTransition, useEffect, useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import AgentKraftLanding from "./AgentKraftLanding.jsx";
 
 const pageMeta = {
@@ -603,6 +604,7 @@ export default function App() {
             <TopNav currentPage={page} />
             {content}
             <Footer />
+            <Analytics />
         </div>
     );
 }
