@@ -1,4 +1,6 @@
-﻿export default function GovernAgentHomepageBright() {
+﻿import { Analytics } from "@vercel/analytics/react";
+
+export default function GovernAgentHomepageBright() {
   const section = "mx-auto max-w-7xl px-6 md:px-10";
   const panel = "rounded-[28px] border border-slate-200 bg-white shadow-[0_18px_60px_rgba(15,23,42,0.08)]";
   const soft = "rounded-[24px] border border-slate-200 bg-white shadow-[0_10px_30px_rgba(15,23,42,0.05)]";
@@ -494,6 +496,9 @@
           </div>
         </div>
       </footer>
+      <Analytics />
     </div>
   );
 }
+
+
