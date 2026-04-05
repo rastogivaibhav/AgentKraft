@@ -1,608 +1,499 @@
-import { startTransition, useEffect, useState } from "react";
-import AgentKraftLanding from "./AgentKraftLanding.jsx";
+﻿export default function GovernAgentHomepageBright() {
+  const section = "mx-auto max-w-7xl px-6 md:px-10";
+  const panel = "rounded-[28px] border border-slate-200 bg-white shadow-[0_18px_60px_rgba(15,23,42,0.08)]";
+  const soft = "rounded-[24px] border border-slate-200 bg-white shadow-[0_10px_30px_rgba(15,23,42,0.05)]";
+  const chip = "rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-600";
 
-const pageMeta = {
-    home: { title: "Home", href: "#/" },
-    platform: { title: "Platform", href: "#/platform" },
-    security: { title: "Security", href: "#/security" },
-    intelligence: { title: "Threat Intelligence", href: "#/intelligence" },
-    governance: { title: "Governance", href: "#/governance" },
-    products: { title: "Products", href: "#/products" },
-};
-
-const platformPillars = [
-    {
-        label: "On-device security",
-        title: "Protect runtime where execution becomes real.",
-        copy: "Carry control to endpoint and local runtime paths instead of stopping at observability dashboards.",
-    },
-    {
-        label: "On-network intelligence",
-        title: "See and govern network-facing agent behavior.",
-        copy: "Track traffic, API use, cross-boundary actions, and execution risk across networked agent systems.",
-    },
-    {
-        label: "Enterprise-wide traceability",
-        title: "Follow agent behavior across the organization.",
-        copy: "Create one traceability layer across teams, business units, workflows, and operating environments.",
-    },
-    {
-        label: "Global execution protection",
-        title: "Protect how agents execute at scale.",
-        copy: "Apply consistent safeguards and governance across regions, tenants, and execution paths.",
-    },
-];
-
-const securityControls = [
-    {
-        label: "Device and endpoint",
-        title: "Protect execution at the edge",
-        copy: "Detect and constrain risky actions on the device or endpoint where agent behavior becomes irreversible action.",
-    },
-    {
-        label: "Runtime controls",
-        title: "Enforce policy in live flows",
-        copy: "Stop sensitive execution paths in real time instead of relying only on offline testing or human hope.",
-    },
-    {
-        label: "Organization-wide posture",
-        title: "Move beyond app-by-app defense",
-        copy: "Apply one protection model across teams, environments, and agent surfaces instead of fragmented local controls.",
-    },
-];
-
-const intelligenceSignals = [
-    {
-        label: "Network signal",
-        title: "Map traffic and cross-boundary behavior",
-        copy: "Understand when agents cross systems, regions, tools, and policy domains so threats show up before incidents do.",
-    },
-    {
-        label: "Execution signal",
-        title: "Correlate behavior across agent lifecycles",
-        copy: "Tie actions, prompts, model calls, tool invocations, and runtime posture into one operational intelligence surface.",
-    },
-    {
-        label: "Threat insight",
-        title: "See where risk is actually emerging",
-        copy: "Turn distributed telemetry into actionable threat intelligence for platform, security, and governance teams.",
-    },
-];
-
-const governanceLayers = [
-    {
-        layer: "Domain 1",
-        title: "Organizational control",
-        copy: "Business red lines, executive posture, and non-negotiable operating boundaries.",
-    },
-    {
-        layer: "Domain 2",
-        title: "External obligations",
-        copy: "Jurisdiction-aware duties, legal expectations, and policy-sensitive obligations.",
-    },
-    {
-        layer: "Domain 3",
-        title: "Data and trust controls",
-        copy: "Privacy, sensitive-data posture, and enterprise trust requirements.",
-    },
-    {
-        layer: "Domain 4",
-        title: "Execution scope",
-        copy: "Authority boundaries, approval posture, and execution risk ownership.",
-    },
-    {
-        layer: "Domain 5",
-        title: "Capability control",
-        copy: "How agents can use tools, integrations, and side-effecting capabilities.",
-    },
-    {
-        layer: "Domain 6",
-        title: "Workflow coordination",
-        copy: "Cross-agent movement, workflow boundaries, and coordinated execution safeguards.",
-    },
-    {
-        layer: "Domain 7",
-        title: "Assurance and evidence",
-        copy: "Operational assurance, audit visibility, and trusted evidence tied to real outcomes.",
-    },
-];
-
-const productDetails = [
-    {
-        name: "AgentFabric",
-        eyebrow: "Runtime control plane",
-        summary: "The control surface for runtime visibility, operator workflows, release posture, and enterprise-wide traceability.",
-        points: ["Cross-agent traceability", "Operational intelligence and release control", "Runtime visibility across the enterprise"],
-    },
-    {
-        name: "AGS Sovereign",
-        eyebrow: "7-layer governance engine",
-        summary: "The policy and decision core that evaluates real-world agent risk through layered governance rather than flat rules or passive evals.",
-        points: ["Multi-domain governance model", "Deterministic verdicting for high-risk actions", "Trusted decision evidence"],
-    },
-    {
-        name: "Gavel Runtime",
-        eyebrow: "Execution enforcement layer",
-        summary: "The runtime and endpoint layer that carries security, protection, and policy enforcement down to where agent execution actually happens.",
-        points: ["On-device and endpoint protection", "Runtime and network-aware interception", "Machine-authenticated enforcement path"],
-    },
-];
-
-const applicationArchitectures = [
-    {
-        name: "AgentFabric",
-        eyebrow: "Runtime control plane",
-        summary: "The operational layer for runtime observability, governance workflows, pricing, release control, and enterprise-wide AI operations.",
-        flow: ["Apps and agents", "SDK / OTLP", "Collector", "Gateway / control plane", "Portal and data systems"],
-        responsibilities: [
-            "Observe runtime behavior, spans, lineage, and live activity",
-            "Manage policies, prompts, evals, budgets, and releases",
-            "Give platform and security teams one operator surface",
-        ],
-    },
-    {
-        name: "AGS Sovereign",
-        eyebrow: "Governance decision engine",
-        summary: "The deterministic policy core that evaluates proposed actions before execution and returns permit, deny, or escalate with evidence.",
-        flow: ["Proposed action", "Multi-domain evaluation", "Risk and conflict checks", "Verdict", "Evidence and monitoring"],
-        responsibilities: [
-            "Apply governance across business, legal, data, workflow, and runtime domains",
-            "Produce deterministic verdicts for high-risk execution paths",
-            "Keep decision evidence and operational provenance linked to outcomes",
-        ],
-    },
-    {
-        name: "Gavel Runtime",
-        eyebrow: "Endpoint and runtime enforcement",
-        summary: "The machine-authenticated runtime loop that carries policy to the device, endpoint, and local operator surfaces.",
-        flow: ["Runtime detects action", "SRP evaluates policy", "Runtime enforces", "Telemetry recorded", "Operators install and trust"],
-        responsibilities: [
-            "Enforce allow, audit, or deny at the point of action",
-            "Keep the runtime contract disciplined across server and client planes",
-            "Support install, restart, rollback, and operator-visible trust",
-        ],
-    },
-];
-
-const architectureRails = [
-    { title: "Device", body: "Endpoint enforcement, runtime bridge, machine-authenticated posture." },
-    { title: "Network", body: "Traffic visibility, cross-boundary actions, and threat intelligence." },
-    { title: "Governance", body: "Multi-domain decisioning, verdict authority, and execution safeguards." },
-    { title: "Enterprise", body: "Organization-wide traceability, protection, and trusted evidence." },
-];
-
-const deploymentModels = [
-    "Private cloud deployment",
-    "Enterprise VPC / tenant isolation",
-    "Hybrid control plane + runtime edge",
-    "Regulated environment rollout",
-];
-
-const trustSignals = [
-    "Trusted audit evidence",
-    "Organization-wide traceability",
-    "On-device and on-network coverage",
-    "Deterministic verdict evidence",
-];
-
-const securityEvents = [
-    { name: "Endpoint execution anomaly", verdict: "Blocked", detail: "Unapproved privileged execution request" },
-    { name: "Cross-boundary tool call", verdict: "Escalated", detail: "Sensitive transfer outside approved region" },
-    { name: "Local runtime policy drift", verdict: "Contained", detail: "Runtime sync forced to protected posture" },
-];
-
-const threatSignals = [
-    { title: "Cross-agent correlation", value: "14 linked sessions", tone: "cool" },
-    { title: "External action bursts", value: "3 flagged clusters", tone: "warm" },
-    { title: "High-risk tool patterns", value: "7 active detections", tone: "good" },
-];
-
-const evidenceRows = [
-    { label: "Decision receipts", value: "Immutable" },
-    { label: "Execution logs", value: "Protected" },
-    { label: "Audit readiness", value: "Operator visible" },
-];
-
-function getPageFromHash(hash) {
-    if (!hash || hash === "#" || hash === "#/") return "home";
-    if (!hash.startsWith("#/")) return "home";
-
-    const slug = hash.slice(2).split("/")[0].toLowerCase();
-    return pageMeta[slug] ? slug : "home";
-}
-
-function TopNav({ currentPage }) {
-    return (
-        <header className="ak-nav-shell">
-            <div className="ak-nav">
-                <a className="ak-brand" href="#/">
-                    <span className="ak-brand-mark" />
-                    <span>AgentKraft</span>
-                </a>
-                <nav className="ak-nav-links" aria-label="Primary">
-                    {Object.entries(pageMeta).map(([key, page]) => (
-                        <a
-                            key={key}
-                            href={page.href}
-                            className={currentPage === key ? "ak-nav-link-active" : undefined}
-                        >
-                            {page.title}
-                        </a>
-                    ))}
-                </nav>
-                <a className="ak-button ak-button-secondary ak-nav-cta" href="mailto:founders@agentkraft.tech">
-                    Book a pilot
-                </a>
+  return (
+    <div className="min-h-screen bg-[#f8fafc] text-slate-900">
+      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur">
+        <div className={`${section} flex flex-col gap-4 py-4 md:flex-row md:items-center md:justify-between`}>
+          <div className="flex items-center gap-4">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400">
+              Logo
             </div>
-        </header>
-    );
-}
-
-function PlatformPage() {
-    return (
-        <div className="ak-page ak-page-view">
-            <div className="ak-noise" aria-hidden="true" />
-            <section className="ak-page-hero">
-                <div className="ak-section-heading">
-                    <span>Platform</span>
-                    <h2>Protection across device, network, governance, and enterprise execution.</h2>
-                    <p>
-                        AgentKraft is shaped as an architecture-led platform. It connects runtime operations, governance
-                        decisioning, and endpoint enforcement into one product stack instead of leaving those concerns
-                        scattered across separate tools.
-                    </p>
-                </div>
-                <div className="ak-page-grid">
-                    {platformPillars.map((pillar) => (
-                        <article key={pillar.label} className="ak-page-card">
-                            <span>{pillar.label}</span>
-                            <h3>{pillar.title}</h3>
-                            <p>{pillar.copy}</p>
-                        </article>
-                    ))}
-                </div>
-                <div className="ak-architecture-board">
-                    <div className="ak-architecture-board-top">
-                        <span>Unified execution architecture</span>
-                        <strong>One intelligence and protection layer across the full stack</strong>
-                    </div>
-                    <div className="ak-architecture-board-grid">
-                        {architectureRails.map((rail) => (
-                            <div key={rail.title} className="ak-architecture-board-card">
-                                <span>{rail.title}</span>
-                                <h3>{rail.title} plane</h3>
-                                <p>{rail.body}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="ak-proof-grid">
-                    <div className="ak-proof-card">
-                        <span>Deployment models</span>
-                        <div className="ak-proof-list">
-                            {deploymentModels.map((item) => (
-                                <div key={item} className="ak-proof-item">{item}</div>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="ak-proof-card">
-                        <span>Trust signals</span>
-                        <div className="ak-proof-list">
-                            {trustSignals.map((item) => (
-                                <div key={item} className="ak-proof-item">{item}</div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-                <div className="ak-application-grid">
-                    {applicationArchitectures.map((item) => (
-                        <article key={item.name} className="ak-application-card">
-                            <span>{item.eyebrow}</span>
-                            <h3>{item.name}</h3>
-                            <p>{item.summary}</p>
-                            <div className="ak-application-flow" aria-label={`${item.name} architecture`}>
-                                {item.flow.map((step, index) => (
-                                    <div key={step} className="ak-application-step">
-                                        <strong>{index + 1}</strong>
-                                        <p>{step}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </article>
-                    ))}
-                </div>
-            </section>
-        </div>
-    );
-}
-
-function SecurityPage() {
-    return (
-        <div className="ak-page ak-page-view">
-            <div className="ak-noise" aria-hidden="true" />
-            <section className="ak-page-hero">
-                <div className="ak-section-heading">
-                    <span>Security</span>
-                    <h2>Secure agent execution where actions actually happen.</h2>
-                    <p>
-                        AgentKraft is designed for organizations that need more than posture dashboards. It protects
-                        runtime execution at device, endpoint, and organization scale.
-                    </p>
-                </div>
-                <div className="ak-page-grid">
-                    {securityControls.map((item) => (
-                        <article key={item.title} className="ak-page-card">
-                            <span>{item.label}</span>
-                            <h3>{item.title}</h3>
-                            <p>{item.copy}</p>
-                        </article>
-                    ))}
-                </div>
-                <div className="ak-page-mock ak-page-mock-security">
-                    <div className="ak-page-mock-topbar">
-                        <span className="ak-console-dot" />
-                        <span className="ak-console-dot" />
-                        <span className="ak-console-dot" />
-                        <strong>Security operations console</strong>
-                    </div>
-                    <div className="ak-page-mock-body">
-                        <div className="ak-page-mock-column">
-                            <span>Active protections</span>
-                            {securityEvents.map((item) => (
-                                <div key={item.name} className="ak-page-mock-row">
-                                    <strong>{item.verdict}</strong>
-                                    <div>
-                                        <p>{item.name}</p>
-                                        <small>{item.detail}</small>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                        <div className="ak-page-mock-column ak-page-mock-side">
-                            <span>Protection coverage</span>
-                            <div className="ak-metric-stack">
-                                <div>Device runtime</div>
-                                <div>Endpoint actions</div>
-                                <div>Cross-boundary execution</div>
-                                <div>Enterprise protection posture</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="ak-company-note">
-                    <h3>Security stance</h3>
-                    <p>
-                        This is not just model or prompt security. It is execution protection for autonomous systems
-                        across endpoint, runtime, and enterprise control surfaces.
-                    </p>
-                </div>
-            </section>
-        </div>
-    );
-}
-
-function IntelligencePage() {
-    return (
-        <div className="ak-page ak-page-view">
-            <div className="ak-noise" aria-hidden="true" />
-            <section className="ak-page-hero">
-                <div className="ak-section-heading">
-                    <span>Threat Intelligence</span>
-                    <h2>Turn agent telemetry into enterprise threat intelligence.</h2>
-                    <p>
-                        Runtime signals only matter if they become usable intelligence. AgentKraft is built to connect
-                        agent behavior, network movement, and execution outcomes into one operational picture.
-                    </p>
-                </div>
-                <div className="ak-page-grid">
-                    {intelligenceSignals.map((item) => (
-                        <article key={item.title} className="ak-page-card">
-                            <span>{item.label}</span>
-                            <h3>{item.title}</h3>
-                            <p>{item.copy}</p>
-                        </article>
-                    ))}
-                </div>
-                <div className="ak-page-mock ak-page-mock-intel">
-                    <div className="ak-page-mock-topbar">
-                        <span className="ak-console-dot" />
-                        <span className="ak-console-dot" />
-                        <span className="ak-console-dot" />
-                        <strong>Threat intelligence board</strong>
-                    </div>
-                    <div className="ak-intel-grid">
-                        {threatSignals.map((item) => (
-                            <div key={item.title} className={`ak-intel-card ak-${item.tone}`}>
-                                <span>{item.title}</span>
-                                <strong>{item.value}</strong>
-                            </div>
-                        ))}
-                        <div className="ak-intel-map">
-                            <div className="ak-intel-map-node ak-intel-map-node-one" />
-                            <div className="ak-intel-map-node ak-intel-map-node-two" />
-                            <div className="ak-intel-map-node ak-intel-map-node-three" />
-                            <div className="ak-intel-map-node ak-intel-map-node-four" />
-                        </div>
-                    </div>
-                </div>
-                <div className="ak-company-note">
-                    <h3>Why intelligence matters</h3>
-                    <p>
-                        Threat intelligence is the bridge between observability and real protection. It is how
-                        organizations spot risk patterns before they become incidents or policy failures.
-                    </p>
-                </div>
-            </section>
-        </div>
-    );
-}
-
-function GovernancePage() {
-    return (
-        <div className="ak-page ak-page-view">
-            <div className="ak-noise" aria-hidden="true" />
-            <section className="ak-page-hero">
-                <div className="ak-section-heading">
-                    <span>Governance</span>
-                    <h2>Governance designed for real-world enterprise challenges.</h2>
-                    <p>
-                        AgentKraft is not built on flat policies alone. The governance system is structured across
-                        multiple control domains so enterprises can manage law, execution, risk, tooling, and accountability together.
-                    </p>
-                </div>
-                <div className="ak-governance-grid">
-                    {governanceLayers.map((item) => (
-                        <article key={item.title} className="ak-page-card ak-governance-card">
-                            <span>{item.layer}</span>
-                            <h3>{item.title}</h3>
-                            <p>{item.copy}</p>
-                        </article>
-                    ))}
-                </div>
-                <div className="ak-page-mock ak-page-mock-governance">
-                    <div className="ak-page-mock-topbar">
-                        <span className="ak-console-dot" />
-                        <span className="ak-console-dot" />
-                        <span className="ak-console-dot" />
-                        <strong>Governance and evidence board</strong>
-                    </div>
-                    <div className="ak-page-mock-body">
-                        <div className="ak-page-mock-column">
-                            <span>Control interactions</span>
-                            <div className="ak-governance-matrix">
-                                {governanceLayers.slice(0, 4).map((item) => (
-                                    <div key={item.title} className="ak-governance-matrix-row">
-                                        <strong>{item.layer}</strong>
-                                        <p>{item.title}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="ak-page-mock-column ak-page-mock-side">
-                            <span>Evidence output</span>
-                            <div className="ak-proof-list">
-                                {evidenceRows.map((row) => (
-                                    <div key={row.label} className="ak-proof-item">
-                                        {row.label}: {row.value}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="ak-company-note">
-                    <h3>Assurance matters</h3>
-                    <p>
-                        Governance is only real if decisions and execution trails can be trusted later. That is why the
-                        model is paired with durable evidence, operational traceability, and reviewable decision records.
-                    </p>
-                </div>
-            </section>
-        </div>
-    );
-}
-
-function ProductsPage() {
-    return (
-        <div className="ak-page ak-page-view">
-            <div className="ak-noise" aria-hidden="true" />
-            <section className="ak-page-hero">
-                <div className="ak-section-heading">
-                    <span>Products</span>
-                    <h2>Three products, one enterprise protection stack.</h2>
-                    <p>
-                        Internally the stack is modular. Externally it should feel like one serious system for agent
-                        intelligence, execution protection, and governance-backed control.
-                    </p>
-                </div>
-                <div className="ak-page-grid">
-                    {productDetails.map((product) => (
-                        <article key={product.name} className="ak-page-card ak-product-detail-card">
-                            <span>{product.eyebrow}</span>
-                            <h3>{product.name}</h3>
-                            <p>{product.summary}</p>
-                            <ul className="ak-page-list">
-                                {product.points.map((point) => (
-                                    <li key={point}>{point}</li>
-                                ))}
-                            </ul>
-                        </article>
-                    ))}
-                </div>
-                <div className="ak-product-architecture">
-                    {applicationArchitectures.map((product) => (
-                        <article key={product.name} className="ak-page-card ak-product-architecture-card">
-                            <span>{product.eyebrow}</span>
-                            <h3>{product.name} in the stack</h3>
-                            <p>{product.summary}</p>
-                            <div className="ak-application-flow ak-application-flow-compact">
-                                {product.flow.map((step, index) => (
-                                    <div key={step} className="ak-application-step">
-                                        <strong>{index + 1}</strong>
-                                        <p>{step}</p>
-                                    </div>
-                                ))}
-                            </div>
-                            <ul className="ak-page-list">
-                                {product.responsibilities.map((item) => (
-                                    <li key={item}>{item}</li>
-                                ))}
-                            </ul>
-                        </article>
-                    ))}
-                </div>
-            </section>
-        </div>
-    );
-}
-
-function Footer() {
-    return (
-        <footer className="ak-footer">
-            <div className="ak-footer-inner">
-                <div>
-                    <strong>AgentKraft</strong>
-                    <p>Protection, intelligence, traceability, and governance for enterprise agent execution.</p>
-                </div>
-                <div className="ak-footer-links">
-                    <a href="#/">Home</a>
-                    <a href="#/platform">Platform</a>
-                    <a href="#/security">Security</a>
-                    <a href="#/intelligence">Threat Intelligence</a>
-                    <a href="#/governance">Governance</a>
-                    <a href="#/products">Products</a>
-                </div>
+            <div>
+              <div className="text-lg font-semibold tracking-tight">GovernAgent</div>
+              <div className="text-sm text-slate-500">The AI Control Stack</div>
             </div>
-        </footer>
-    );
-}
+          </div>
 
-export default function App() {
-    const [page, setPage] = useState(() => getPageFromHash(window.location.hash));
+          <nav className="flex flex-wrap items-center gap-4 text-sm text-slate-600 md:gap-6">
+            <a href="#hero" className="transition hover:text-slate-950">Home</a>
+            <a href="#problem" className="transition hover:text-slate-950">Problem</a>
+            <a href="#stack" className="transition hover:text-slate-950">Stack</a>
+            <a href="#how-it-works" className="transition hover:text-slate-950">How It Works</a>
+            <a href="#comparison" className="transition hover:text-slate-950">Why GovernAgent</a>
+            <a href="#pilot" className="transition hover:text-slate-950">Pilot</a>
+            <a href="#about" className="transition hover:text-slate-950">About</a>
+          </nav>
 
-    useEffect(() => {
-        const onHashChange = () => {
-            startTransition(() => {
-                setPage(getPageFromHash(window.location.hash));
-            });
-        };
-
-        window.addEventListener("hashchange", onHashChange);
-        return () => window.removeEventListener("hashchange", onHashChange);
-    }, []);
-
-    let content = <AgentKraftLanding />;
-    if (page === "platform") content = <PlatformPage />;
-    if (page === "security") content = <SecurityPage />;
-    if (page === "intelligence") content = <IntelligencePage />;
-    if (page === "governance") content = <GovernancePage />;
-    if (page === "products") content = <ProductsPage />;
-
-    return (
-        <div className="ak-app-shell">
-            <TopNav currentPage={page} />
-            {content}
-            <Footer />
+          <div className="flex items-center gap-3">
+            <button className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
+              Watch Demo
+            </button>
+            <button className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800">
+              Request Pilot
+            </button>
+          </div>
         </div>
-    );
+      </header>
+
+      <main>
+        <section id="hero" className="pt-10 md:pt-14">
+          <div className={`${section} grid grid-cols-1 gap-10 xl:grid-cols-12 xl:items-center`}>
+            <div className="xl:col-span-5">
+              <div className="inline-flex items-center rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-700">
+                Bright Theme - GovernAgent Homepage
+              </div>
+
+              <h1 className="mt-5 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl md:leading-[1.05]">
+                Control AI agents before they control your enterprise
+              </h1>
+
+              <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
+                GovernAgent gives enterprises a clear runtime control path for AI systems: understand the agent, observe the action, evaluate it before execution, and enforce the outcome when it matters.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <button className="rounded-2xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
+                  Request Pilot
+                </button>
+                <button className="rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+                  Watch 2-min Demo
+                </button>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <div className={chip}>Governance</div>
+                <div className={chip}>Observability</div>
+                <div className={chip}>Runtime Enforcement</div>
+                <div className={chip}>Cross-platform</div>
+              </div>
+
+              <div className="mt-10 rounded-[24px] border border-slate-200 bg-white p-5 shadow-[0_16px_50px_rgba(15,23,42,0.06)]">
+                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Why this matters</div>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Most teams can build AI agents. Fewer teams can observe them properly. Almost nobody can reliably stop them when they should not act. GovernAgent is designed to close that gap.
+                </p>
+              </div>
+            </div>
+
+            <div className="xl:col-span-7">
+              <div className={`${panel} overflow-hidden`}>
+                <div className="border-b border-slate-200 bg-gradient-to-r from-cyan-50 via-white to-violet-50 px-6 py-5 md:px-8">
+                  <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">The AI Control Stack</div>
+                      <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-950 md:text-3xl">
+                        One action. Four layers of control.
+                      </h2>
+                      <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600 md:text-base">
+                        When an AI agent attempts a real action, the platform does not rely on logs, policy documents, or hope alone. It creates a trusted path from understanding to enforcement.
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm leading-7 text-emerald-800">
+                      If your AI agents can act, they must be governed.
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-6 md:p-8">
+                  <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.02fr_64px_1.15fr]">
+                    <div className="space-y-5">
+                      <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">1 - Design Layer</div>
+                        <div className="mt-2 text-2xl font-semibold tracking-tight">AgentKraft</div>
+                        <p className="mt-3 text-sm leading-7 text-slate-600">
+                          Helps teams design and understand agent behavior before deployment, reducing ambiguity before runtime begins.
+                        </p>
+                      </div>
+
+                      <div className="rounded-3xl border border-cyan-200 bg-cyan-50 p-5">
+                        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">2 - Observation Layer</div>
+                        <div className="mt-2 text-2xl font-semibold tracking-tight text-cyan-950">AgentFabric</div>
+                        <p className="mt-3 text-sm leading-7 text-cyan-900/80">
+                          Captures traces, context, and runtime evidence so teams can see what the agent is trying to do.
+                        </p>
+                      </div>
+
+                      <div className="rounded-3xl border border-violet-200 bg-violet-50 p-5">
+                        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-700">3 - Decision Layer</div>
+                        <div className="mt-2 text-2xl font-semibold tracking-tight text-violet-950">AGS Sovereign</div>
+                        <p className="mt-3 text-sm leading-7 text-violet-900/80">
+                          Evaluates proposed actions before execution and returns a clear verdict: PERMIT, DENY, or ESCALATE.
+                        </p>
+                      </div>
+
+                      <div className="rounded-3xl border border-rose-200 bg-rose-50 p-5">
+                        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-rose-700">4 - Enforcement Layer</div>
+                        <div className="mt-2 text-2xl font-semibold tracking-tight text-rose-950">Gavel Runtime</div>
+                        <p className="mt-3 text-sm leading-7 text-rose-900/80">
+                          Makes the governance decision real at runtime by stopping disallowed actions before they complete.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="hidden lg:flex flex-col items-center justify-center">
+                      <div className="h-16 w-px bg-gradient-to-b from-slate-300 to-cyan-400" />
+                      <div className="my-2 rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-xs font-semibold text-cyan-700">observe</div>
+                      <div className="h-16 w-px bg-gradient-to-b from-cyan-400 to-violet-400" />
+                      <div className="my-2 rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-xs font-semibold text-violet-700">decide</div>
+                      <div className="h-16 w-px bg-gradient-to-b from-violet-400 to-rose-400" />
+                      <div className="my-2 rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-700 animate-pulse">enforce</div>
+                      <div className="h-16 w-px bg-gradient-to-b from-rose-400 to-emerald-400" />
+                    </div>
+
+                    <div className="rounded-[32px] border border-slate-200 bg-gradient-to-br from-white via-slate-50 to-cyan-50/60 p-6 md:p-7">
+                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Example Runtime Story</div>
+                      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-950">
+                        Sensitive outbound API call
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-slate-600">
+                        The architecture becomes easier to trust when it is attached to a concrete action that a buyer can immediately understand.
+                      </p>
+
+                      <div className="mt-6 space-y-3">
+                        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                          <div className="text-sm font-medium text-slate-900">An agent attempts an external action</div>
+                          <div className="mt-1 text-sm leading-7 text-slate-600">The system does not assume this action is safe simply because the agent initiated it.</div>
+                        </div>
+                        <div className="rounded-2xl border border-cyan-200 bg-cyan-50 p-4">
+                          <div className="text-sm font-medium text-cyan-950">AgentFabric captures the context</div>
+                          <div className="mt-1 text-sm leading-7 text-cyan-900/80">The attempted action becomes visible and inspectable.</div>
+                        </div>
+                        <div className="rounded-2xl border border-violet-200 bg-violet-50 p-4">
+                          <div className="text-sm font-medium text-violet-950">AGS Sovereign returns DENY</div>
+                          <div className="mt-1 text-sm leading-7 text-violet-900/80">The system makes an explicit governance decision before execution continues.</div>
+                        </div>
+                        <div className="rounded-2xl border border-rose-300 bg-rose-50 p-4 shadow-[0_0_0_1px_rgba(251,113,133,0.10),0_0_32px_rgba(251,113,133,0.14)]">
+                          <div className="flex items-center justify-between gap-3">
+                            <div className="text-sm font-semibold text-rose-950">Gavel Runtime blocks the action</div>
+                            <div className="rounded-full border border-rose-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-rose-700">
+                              Deny
+                            </div>
+                          </div>
+                          <div className="mt-1 text-sm leading-7 text-rose-900/80">The risky action does not complete, and control remains with the enterprise.</div>
+                        </div>
+                      </div>
+
+                      <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm leading-7 text-emerald-900/90">
+                        The result is a traceable chain from intent to observability, from decision to enforcement.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="problem" className="pt-20 md:pt-24">
+          <div className={section}>
+            <div className="max-w-4xl">
+              <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">The problem</div>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-5xl">
+                AI agents are already acting inside enterprise systems. Control has not caught up.
+              </h2>
+              <p className="mt-5 text-base leading-8 text-slate-600 md:text-lg">
+                Enterprises are moving from passive AI interfaces to active systems that can call APIs, move data, trigger workflows, and interact with external services. The issue is no longer whether agents can act. The issue is whether the enterprise can meaningfully control what happens next.
+              </p>
+            </div>
+
+            <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+              <div className={`${soft} p-6`}>
+                <div className="text-lg font-semibold tracking-tight">Autonomous actions</div>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Agents can trigger APIs, workflows, and data movement with increasing autonomy across business systems.
+                </p>
+              </div>
+              <div className={`${soft} p-6`}>
+                <div className="text-lg font-semibold tracking-tight">Advisory governance</div>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Many governance approaches describe what should happen but do not stop what should not happen.
+                </p>
+              </div>
+              <div className={`${soft} p-6`}>
+                <div className="text-lg font-semibold tracking-tight">Reactive security</div>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Logs and alerts often arrive after the action, which is too late when sensitive data or risky operations are involved.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="stack" className="pt-20 md:pt-24">
+          <div className={section}>
+            <div className="max-w-4xl">
+              <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">The stack</div>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-5xl">
+                One system. Four layers. Complete control.
+              </h2>
+              <p className="mt-5 text-base leading-8 text-slate-600 md:text-lg">
+                GovernAgent brings together the layers enterprises need in one coherent operating picture: design, observability, governance decisioning, and runtime enforcement.
+              </p>
+            </div>
+            <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
+              <div className={`${soft} p-6`}>
+                <div className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Design layer</div>
+                <div className="mt-2 text-2xl font-semibold tracking-tight">AgentKraft</div>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Helps teams design, simulate, and understand agent behavior before deployment so runtime systems begin from a clearer foundation.
+                </p>
+              </div>
+              <div className={`${soft} p-6`}>
+                <div className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-700">Observation layer</div>
+                <div className="mt-2 text-2xl font-semibold tracking-tight">AgentFabric</div>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Captures traces, spans, context, failures, and cost signals so operators can see what agents are actually doing.
+                </p>
+              </div>
+              <div className={`${soft} p-6`}>
+                <div className="text-sm font-semibold uppercase tracking-[0.18em] text-violet-700">Decision layer</div>
+                <div className="mt-2 text-2xl font-semibold tracking-tight">AGS Sovereign</div>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Evaluates actions before execution and returns clear runtime verdicts such as PERMIT, DENY, or ESCALATE.
+                </p>
+              </div>
+              <div className={`${soft} p-6`}>
+                <div className="text-sm font-semibold uppercase tracking-[0.18em] text-rose-700">Enforcement layer</div>
+                <div className="mt-2 text-2xl font-semibold tracking-tight">Gavel Runtime</div>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Turns governance decisions into operational reality by blocking disallowed actions before they complete.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="how-it-works" className="pt-20 md:pt-24">
+          <div className={section}>
+            <div className="max-w-4xl">
+              <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">How it works</div>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-5xl">
+                A simple runtime story that makes the platform tangible
+              </h2>
+              <p className="mt-5 text-base leading-8 text-slate-600 md:text-lg">
+                Buyers trust systems faster when they can see how the platform behaves in a concrete situation rather than reading abstract claims.
+              </p>
+            </div>
+
+            <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-4">
+              <div className={`${soft} p-6`}>
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">01</div>
+                <div className="mt-2 text-lg font-semibold tracking-tight">An agent attempts action</div>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  For example, an agent tries to send sensitive internal data to an external API.
+                </p>
+              </div>
+              <div className="rounded-[24px] border border-cyan-200 bg-cyan-50 p-6 shadow-[0_10px_30px_rgba(15,23,42,0.05)]">
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">02</div>
+                <div className="mt-2 text-lg font-semibold tracking-tight text-cyan-950">The action is observed</div>
+                <p className="mt-3 text-sm leading-7 text-cyan-900/80">
+                  AgentFabric captures the request context so the system is not operating blind.
+                </p>
+              </div>
+              <div className="rounded-[24px] border border-violet-200 bg-violet-50 p-6 shadow-[0_10px_30px_rgba(15,23,42,0.05)]">
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-700">03</div>
+                <div className="mt-2 text-lg font-semibold tracking-tight text-violet-950">A governance verdict is returned</div>
+                <p className="mt-3 text-sm leading-7 text-violet-900/80">
+                  AGS Sovereign evaluates the action and returns a decision, such as DENY.
+                </p>
+              </div>
+              <div className="rounded-[24px] border border-rose-300 bg-rose-50 p-6 shadow-[0_10px_30px_rgba(251,113,133,0.14)]">
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-rose-700">04</div>
+                <div className="mt-2 text-lg font-semibold tracking-tight text-rose-950">The action is stopped</div>
+                <p className="mt-3 text-sm leading-7 text-rose-900/80">
+                  Gavel Runtime enforces the decision so the outbound event does not complete.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="comparison" className="pt-20 md:pt-24">
+          <div className={section}>
+            <div className="max-w-4xl">
+              <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Why GovernAgent</div>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-5xl">
+                Why existing solutions still leave a gap
+              </h2>
+              <p className="mt-5 text-base leading-8 text-slate-600 md:text-lg">
+                Many tools can define policy. Many tools can provide dashboards. The hard problem is creating a trusted runtime path between an agent attempting an action and the enterprise deciding whether it should be allowed to happen.
+              </p>
+            </div>
+
+            <div className="mt-10 overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_18px_60px_rgba(15,23,42,0.08)]">
+              <div className="grid grid-cols-3 border-b border-slate-200 bg-slate-50 text-sm font-semibold text-slate-700">
+                <div className="px-6 py-4">Capability</div>
+                <div className="px-6 py-4">Others</div>
+                <div className="px-6 py-4">GovernAgent</div>
+              </div>
+              {[
+                ["Policy definition", "Yes", "Yes"],
+                ["Observability", "Yes", "Yes"],
+                ["Runtime decisioning", "Partial", "Yes"],
+                ["Enforcement", "No", "Yes"],
+                ["Cross-platform control", "No", "Yes"],
+              ].map((row, i) => (
+                <div key={i} className="grid grid-cols-3 border-b border-slate-200 last:border-b-0 text-sm">
+                  <div className="px-6 py-4 text-slate-800">{row[0]}</div>
+                  <div className="px-6 py-4 text-slate-600">{row[1]}</div>
+                  <div className="px-6 py-4 font-semibold text-slate-900">{row[2]}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 rounded-[24px] border border-cyan-200 bg-cyan-50 p-5 text-base leading-8 text-cyan-900 shadow-[0_10px_30px_rgba(15,23,42,0.05)]">
+              GovernAgent is not just another AI dashboard. It is the control path between an agent attempting an action and the enterprise deciding whether that action should be allowed to happen.
+            </div>
+          </div>
+        </section>
+
+        <section className="pt-20 md:pt-24">
+          <div className={section}>
+            <div className="max-w-4xl">
+              <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Adoption</div>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-5xl">
+                Start anywhere. Expand everywhere.
+              </h2>
+              <p className="mt-5 text-base leading-8 text-slate-600 md:text-lg">
+                GovernAgent can be adopted as a modular stack. Teams can begin with the layer that solves the most immediate problem and expand over time.
+              </p>
+            </div>
+            <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+              <div className={`${soft} p-6`}>
+                <div className="text-lg font-semibold tracking-tight">Start with AGS Sovereign</div>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Use the governance decision layer when the immediate need is runtime verdicting and policy-backed control.
+                </p>
+              </div>
+              <div className={`${soft} p-6`}>
+                <div className="text-lg font-semibold tracking-tight">Add AgentFabric</div>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Bring in observability and operational context so the platform is not making decisions without evidence.
+                </p>
+              </div>
+              <div className={`${soft} p-6`}>
+                <div className="text-lg font-semibold tracking-tight">Add Gavel Runtime</div>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Complete the path with enforcement so disallowed actions do not proceed beyond policy intent.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="pt-20 md:pt-24">
+          <div className={section}>
+            <div className="max-w-4xl">
+              <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Built for real systems</div>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-5xl">
+                Designed to feel credible, not speculative
+              </h2>
+            </div>
+
+            <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-4">
+              <div className={`${soft} p-6`}>
+                <div className="text-3xl font-semibold tracking-tight">200+</div>
+                <div className="mt-2 text-sm leading-7 text-slate-600">Validated backend tests</div>
+              </div>
+              <div className={`${soft} p-6`}>
+                <div className="text-3xl font-semibold tracking-tight">High</div>
+                <div className="mt-2 text-sm leading-7 text-slate-600">Frontend coverage and validation focus</div>
+              </div>
+              <div className={`${soft} p-6`}>
+                <div className="text-3xl font-semibold tracking-tight">Multi-OS</div>
+                <div className="mt-2 text-sm leading-7 text-slate-600">Runtime support direction across enterprise environments</div>
+              </div>
+              <div className={`${soft} p-6`}>
+                <div className="text-3xl font-semibold tracking-tight">Pilot</div>
+                <div className="mt-2 text-sm leading-7 text-slate-600">Positioned for controlled production adoption</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="pilot" className="pt-20 md:pt-24">
+          <div className={section}>
+            <div className="rounded-[32px] border border-slate-200 bg-gradient-to-r from-slate-900 to-slate-800 px-6 py-8 text-white shadow-[0_20px_60px_rgba(15,23,42,0.20)] md:px-10 md:py-10">
+              <div className="max-w-4xl">
+                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-300">Pilot</div>
+                <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-5xl">
+                  AI agents are moving faster than governance. Close the gap before it becomes a risk.
+                </h2>
+                <p className="mt-5 text-base leading-8 text-slate-300 md:text-lg">
+                  Start with a focused pilot that demonstrates observable, explainable, and enforceable runtime control in a real enterprise scenario.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <button className="rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100">
+                    Request Pilot
+                  </button>
+                  <button className="rounded-2xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15">
+                    Become Design Partner
+                  </button>
+                  <button className="rounded-2xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15">
+                    Talk to Founder
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="pt-20 md:pt-24 pb-20 md:pb-24">
+          <div className={section}>
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+              <div className={`${soft} p-6`}>
+                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">About GovernAgent</div>
+                <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
+                  Built for enterprises deploying AI in real environments, not labs
+                </h2>
+                <p className="mt-5 text-sm leading-8 text-slate-600 md:text-base">
+                  GovernAgent is designed to make AI systems controllable, enforceable, and safe to operate. It brings together the layers needed to move from agent activity to enterprise-grade control.
+                </p>
+              </div>
+
+              <div className={`${soft} p-6`}>
+                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Contact</div>
+                <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
+                  Let's discuss your first control use case
+                </h2>
+                <p className="mt-5 text-sm leading-8 text-slate-600 md:text-base">
+                  Use this area for your founder email, contact form, calendar link, or design-partner inquiry path.
+                </p>
+                <div className="mt-6 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-5 text-sm leading-7 text-slate-500">
+                  Contact form or booking widget placeholder
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-slate-200 bg-white">
+        <div className={`${section} flex flex-col gap-6 py-8 md:flex-row md:items-center md:justify-between`}>
+          <div className="flex items-center gap-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">
+              Logo
+            </div>
+            <div>
+              <div className="font-semibold tracking-tight">GovernAgent</div>
+              <div className="text-sm text-slate-500">If your AI agents can act, they must be governed.</div>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-4 text-sm text-slate-500 md:justify-end">
+            <a href="#stack" className="hover:text-slate-900">Stack</a>
+            <a href="#how-it-works" className="hover:text-slate-900">How It Works</a>
+            <a href="#comparison" className="hover:text-slate-900">Why GovernAgent</a>
+            <a href="#pilot" className="hover:text-slate-900">Pilot</a>
+            <a href="#about" className="hover:text-slate-900">About</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
 }
